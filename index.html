@@ -174,8 +174,103 @@
 
     /* FOOTER */
     footer { background: var(--dark); text-align: center; padding: 5rem 8vw; }
-    .footer-name { font-size: clamp(2rem, 6vw, 4rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1.5rem; }
+    .footer-name { font-size: clamp(2rem, 6vw, 4rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1.5rem; cursor: default; user-select: none; }
     .footer-sub { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+    /* PORTFOLIO UNLOCK */
+    #unlock-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(12,8,5,0.97);
+      display: none; align-items: center; justify-content: center; flex-direction: column;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    #unlock-overlay.open { display: flex; }
+    #unlock-overlay.visible { opacity: 1; }
+    .unlock-box { text-align: center; }
+    .unlock-label { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+    .unlock-input {
+      background: none; border: none; border-bottom: 1px solid var(--gold);
+      color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+      text-align: center; padding: 0.5rem 1rem; outline: none; width: 280px;
+      letter-spacing: 0.1em;
+    }
+    .unlock-hint { margin-top: 1rem; font-family: 'Montserrat', sans-serif; font-size: 0.55rem; color: rgba(255,255,255,0.2); letter-spacing: 0.2em; }
+    .unlock-close { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: rgba(255,255,255,0.3); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+    .unlock-close:hover { color: #fff; }
+    .unlock-shake { animation: shake 0.4s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+
+    /* PORTFOLIO WORLD */
+    #portfolio-world {
+      position: fixed; inset: 0; z-index: 1500;
+      background: var(--cream); overflow-y: auto;
+      display: none; opacity: 0; transition: opacity 0.5s;
+    }
+    #portfolio-world.open { display: block; }
+    #portfolio-world.visible { opacity: 1; }
+
+    /* Portfolio nav */
+    .pf-nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(18,14,10,0.95); backdrop-filter: blur(16px);
+      padding: 1.2rem 6vw; display: flex; justify-content: space-between; align-items: center;
+    }
+    .pf-nav-logo { font-size: 1rem; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.9); letter-spacing: 0.08em; }
+    .pf-nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .pf-nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; cursor: pointer; transition: color 0.3s; }
+    .pf-nav-links a:hover { color: var(--gold-light); }
+    .pf-close-btn { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); background: none; border: 1px solid rgba(255,255,255,0.15); padding: 0.4rem 1rem; cursor: pointer; transition: all 0.3s; }
+    .pf-close-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* Portfolio hero */
+    .pf-hero { padding: 7rem 8vw 5rem; background: var(--dark); }
+    .pf-hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .pf-hero-name { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; color: #fff; line-height: 0.9; letter-spacing: -0.02em; }
+    .pf-hero-name em { font-style: italic; color: var(--gold-light); }
+    .pf-hero-sub { margin-top: 1.5rem; font-size: 1.1rem; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.5); }
+
+    /* Portfolio tabs */
+    .pf-tabs { background: var(--dark); border-top: 1px solid rgba(201,169,110,0.15); display: flex; gap: 0; }
+    .pf-tab { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 2.5rem; cursor: pointer; color: rgba(255,255,255,0.4); border-bottom: 2px solid transparent; transition: all 0.3s; background: none; border-top: none; border-left: none; border-right: none; }
+    .pf-tab:hover { color: rgba(255,255,255,0.7); }
+    .pf-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* Portfolio panels */
+    .pf-panel { display: none; padding: 5rem 8vw; }
+    .pf-panel.active { display: block; }
+
+    /* Portfolio grid */
+    .pf-section-label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+    .pf-section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--ink); margin-bottom: 3rem; line-height: 1.1; }
+    .pf-section-title em { font-style: italic; color: var(--ink-3); }
+    .pf-grid { columns: 3; column-gap: 1rem; margin-bottom: 5rem; }
+    @media (max-width: 900px) { .pf-grid { columns: 2; } }
+    @media (max-width: 480px) { .pf-grid { columns: 2; column-gap: 0.5rem; } }
+    .pf-grid-item { break-inside: avoid; margin-bottom: 1rem; overflow: hidden; cursor: pointer; position: relative; }
+    .pf-grid-item img { width: 100%; display: block; transition: transform 0.4s, filter 0.3s; filter: brightness(0.95); }
+    .pf-grid-item:hover img { transform: scale(1.03); filter: brightness(1); }
+    .pf-empty { text-align: center; padding: 6rem 2rem; }
+    .pf-empty-icon { font-size: 3rem; margin-bottom: 1.5rem; opacity: 0.3; }
+    .pf-empty-text { font-size: 1.1rem; font-style: italic; color: var(--ink-3); margin-bottom: 0.75rem; }
+    .pf-empty-sub { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--ink-3); opacity: 0.6; }
+
+    /* Blog */
+    .blog-list { max-width: 720px; }
+    .blog-post { border-bottom: 1px solid rgba(58,46,38,0.12); padding: 3rem 0; }
+    .blog-post:first-child { padding-top: 0; }
+    .blog-post-date { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .blog-post-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 300; color: var(--ink); margin-bottom: 1rem; line-height: 1.2; }
+    .blog-post-excerpt { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--ink-2); margin-bottom: 1.25rem; }
+    .blog-post-body { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--ink-2); display: none; margin-top: 1rem; }
+    .blog-post-body p { margin-bottom: 1.2rem; }
+    .blog-read-more { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); cursor: pointer; background: none; border: none; padding: 0; transition: opacity 0.2s; }
+    .blog-read-more:hover { opacity: 0.7; }
+    .blog-empty { padding: 4rem 0; }
+
+    /* Portfolio footer */
+    .pf-footer { background: var(--dark); text-align: center; padding: 4rem 8vw; }
+    .pf-footer-name { font-size: clamp(1.5rem, 4vw, 3rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1rem; }
+    .pf-footer-sub { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
@@ -454,9 +549,123 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-name">Sakshee Sharmaa Paquin</span>
-  <p class="footer-sub">With love - Mother's Day 2026</p>
+  <span class="footer-name" id="footer-trigger">Sakshee Sharmaa Paquin</span>
+  <p class="footer-sub">With love — Mother's Day 2026</p>
 </footer>
+
+<!-- UNLOCK OVERLAY -->
+<div id="unlock-overlay">
+  <button class="unlock-close" onclick="closeUnlock()">✕</button>
+  <div class="unlock-box">
+    <p class="unlock-label">Enter to continue</p>
+    <input class="unlock-input" id="unlock-input" type="password" placeholder="···" autocomplete="off" />
+    <p class="unlock-hint">private access only</p>
+  </div>
+</div>
+
+<!-- PORTFOLIO WORLD -->
+<div id="portfolio-world">
+  <nav class="pf-nav">
+    <div class="pf-nav-logo">Sakshee Sharmaa</div>
+    <ul class="pf-nav-links">
+      <li><a onclick="pfShowTab('acting')">Acting</a></li>
+      <li><a onclick="pfShowTab('modeling')">Modeling</a></li>
+      <li><a onclick="pfShowTab('blog')">Blog</a></li>
+    </ul>
+    <button class="pf-close-btn" onclick="closePortfolio()">← Back</button>
+  </nav>
+
+  <div class="pf-hero">
+    <p class="pf-hero-eyebrow">Sakshee Sharmaa — Portfolio</p>
+    <h1 class="pf-hero-name">Actor.<br><em>Model. Creator.</em></h1>
+    <p class="pf-hero-sub">Based in New York & Florida · Available for projects</p>
+  </div>
+
+  <div class="pf-tabs">
+    <button class="pf-tab active" onclick="pfShowTab('guide')">Guide</button>
+    <button class="pf-tab" onclick="pfShowTab('acting')">Acting</button>
+    <button class="pf-tab" onclick="pfShowTab('modeling')">Modeling</button>
+    <button class="pf-tab" onclick="pfShowTab('blog')">Blog</button>
+  </div>
+
+  <!-- GUIDEBOOK -->
+  <div class="pf-panel active" id="pf-guide">
+    <div style="max-width:720px">
+      <p class="pf-section-label">Welcome</p>
+      <h2 class="pf-section-title">Your <em>space.</em></h2>
+      <div style="width:50px;height:1px;background:var(--gold);margin:0 0 2.5rem"></div>
+
+      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem">This is yours. No one else can find it. It lives inside a site I built for you — tucked behind a password, waiting for you to make it what you want.</p>
+      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:3rem">You've always wanted a place to put your work. Here it is. Add to it at whatever pace feels right. When you're ready to share it with the world, we flip one switch and it becomes the main page.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3.5rem">
+        <div onclick="pfShowTab('acting')" style="border:1px solid rgba(201,169,110,0.25);padding:2rem 1.5rem;cursor:pointer;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,169,110,0.25)'">
+          <div style="font-size:1.8rem;margin-bottom:1rem">🎭</div>
+          <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Acting</p>
+          <p style="font-size:0.95rem;font-weight:300;color:var(--ink-3);line-height:1.6">Headshots, reels, credits, roles. Your stage and screen work.</p>
+        </div>
+        <div onclick="pfShowTab('modeling')" style="border:1px solid rgba(201,169,110,0.25);padding:2rem 1.5rem;cursor:pointer;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,169,110,0.25)'">
+          <div style="font-size:1.8rem;margin-bottom:1rem">📸</div>
+          <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Modeling</p>
+          <p style="font-size:0.95rem;font-weight:300;color:var(--ink-3);line-height:1.6">Campaigns, editorials, lookbooks. Everything in front of a lens.</p>
+        </div>
+        <div onclick="pfShowTab('blog')" style="border:1px solid rgba(201,169,110,0.25);padding:2rem 1.5rem;cursor:pointer;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,169,110,0.25)'">
+          <div style="font-size:1.8rem;margin-bottom:1rem">✍️</div>
+          <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem">Blog</p>
+          <p style="font-size:0.95rem;font-weight:300;color:var(--ink-3);line-height:1.6">Your voice. Stories, thoughts, whatever you want to put into words.</p>
+        </div>
+      </div>
+
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem">How to add content</p>
+      <div style="background:#f7f3ec;padding:1.5rem 2rem;border-left:2px solid var(--gold);margin-bottom:1rem">
+        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2);margin-bottom:0.75rem"><strong style="font-weight:500">Photos (acting &amp; modeling):</strong> Drop images into <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">photos/portfolio/</code> and add entries to <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">pfAlbums.acting</code> or <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">pfAlbums.modeling</code> in the code.</p>
+        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2);margin-bottom:0.75rem"><strong style="font-weight:500">Blog posts:</strong> Add an object to the <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">blogPosts</code> array with <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">title</code>, <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">date</code>, <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">excerpt</code>, and <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">body</code>.</p>
+        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2)"><strong style="font-weight:500">To go public:</strong> Change <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">PORTFOLIO_MODE_PUBLIC = false</code> to <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">true</code> in the JS.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTING -->
+  <div class="pf-panel" id="pf-acting">
+    <p class="pf-section-label">Stage &amp; Screen</p>
+    <h2 class="pf-section-title">Acting <em>Work</em></h2>
+    <div class="pf-grid" id="pf-acting-grid"></div>
+    <div class="pf-empty" id="pf-acting-empty">
+      <div class="pf-empty-icon">🎭</div>
+      <p class="pf-empty-text">Acting portfolio coming soon.</p>
+      <p class="pf-empty-sub">Add headshots and credits to pfAlbums.acting</p>
+    </div>
+  </div>
+
+  <!-- MODELING -->
+  <div class="pf-panel" id="pf-modeling">
+    <p class="pf-section-label">Editorial &amp; Campaign</p>
+    <h2 class="pf-section-title">Modeling <em>Work</em></h2>
+    <div class="pf-grid" id="pf-modeling-grid"></div>
+    <div class="pf-empty" id="pf-modeling-empty">
+      <div class="pf-empty-icon">📸</div>
+      <p class="pf-empty-text">Modeling portfolio coming soon.</p>
+      <p class="pf-empty-sub">Add campaign and editorial photos to pfAlbums.modeling</p>
+    </div>
+  </div>
+
+  <!-- BLOG -->
+  <div class="pf-panel" id="pf-blog">
+    <p class="pf-section-label">Writing</p>
+    <h2 class="pf-section-title">The <em>Blog</em></h2>
+    <div class="blog-list" id="pf-blog-list"></div>
+    <div class="pf-empty blog-empty" id="pf-blog-empty">
+      <div class="pf-empty-icon">✍️</div>
+      <p class="pf-empty-text">No posts yet.</p>
+      <p class="pf-empty-sub">Add entries to the blogPosts array below</p>
+    </div>
+  </div>
+
+  <footer class="pf-footer">
+    <span class="pf-footer-name">Sakshee Sharmaa</span>
+    <p class="pf-footer-sub">Actor · Model · Creator</p>
+  </footer>
+</div>
 
 <!-- LIGHTBOX -->
 <div id="lightbox">
@@ -781,10 +990,175 @@
 
   // Keyboard nav
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { closeViewer(); closeAlbum(); }
+    if (e.key === 'Escape') { closeViewer(); closeAlbum(); closeUnlock(); }
     if (e.key === 'ArrowRight') viewerNav(1);
     if (e.key === 'ArrowLeft') viewerNav(-1);
   });
+
+  // ─────────────────────────────────────────
+  // PORTFOLIO — HIDDEN WORLD
+  // To flip modes (tribute hidden, portfolio public):
+  //   change PORTFOLIO_MODE_PUBLIC = true
+  // ─────────────────────────────────────────
+  const PORTFOLIO_MODE_PUBLIC = false; // flip to true when ready to go live
+  const PORTFOLIO_PASSWORD = 'sakshee'; // change this to whatever she wants
+
+  // ── Portfolio content ── add photos + posts here ──
+  const pfAlbums = {
+    acting: [
+      // { src: 'photos/portfolio/headshot1.jpg', caption: 'Headshot 2024' },
+    ],
+    modeling: [
+      // { src: 'photos/portfolio/editorial1.jpg', caption: 'Zaveri Campaign' },
+    ]
+  };
+
+  const blogPosts = [
+    // {
+    //   title: 'My First Post',
+    //   date: 'May 2026',
+    //   excerpt: 'A short preview of the post...',
+    //   body: '<p>Full post content here.</p><p>More paragraphs...</p>'
+    // }
+  ];
+
+  // ── Unlock trigger — click footer name 5x ──
+  let footerTaps = 0;
+  let tapTimer = null;
+  document.getElementById('footer-trigger').addEventListener('click', () => {
+    footerTaps++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => { footerTaps = 0; }, 2000);
+    if (footerTaps >= 5) {
+      footerTaps = 0;
+      openUnlock();
+    }
+  });
+
+  // ── Konami code unlock (desktop) ──
+  const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let konamiPos = 0;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === KONAMI[konamiPos]) {
+      konamiPos++;
+      if (konamiPos === KONAMI.length) { konamiPos = 0; openUnlock(); }
+    } else { konamiPos = 0; }
+  });
+
+  function openUnlock() {
+    const el = document.getElementById('unlock-overlay');
+    el.style.display = 'flex';
+    requestAnimationFrame(() => el.classList.add('visible'));
+    setTimeout(() => document.getElementById('unlock-input').focus(), 400);
+  }
+
+  function closeUnlock() {
+    const el = document.getElementById('unlock-overlay');
+    el.classList.remove('visible');
+    setTimeout(() => { el.style.display = 'none'; document.getElementById('unlock-input').value = ''; }, 400);
+  }
+
+  document.getElementById('unlock-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = document.getElementById('unlock-input').value.trim().toLowerCase();
+      if (val === PORTFOLIO_PASSWORD) {
+        closeUnlock();
+        setTimeout(openPortfolio, 300);
+      } else {
+        const input = document.getElementById('unlock-input');
+        input.classList.add('unlock-shake');
+        input.value = '';
+        setTimeout(() => input.classList.remove('unlock-shake'), 400);
+      }
+    }
+  });
+
+  function openPortfolio() {
+    pfRenderAll();
+    const el = document.getElementById('portfolio-world');
+    el.style.display = 'block';
+    el.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => el.classList.add('visible'));
+  }
+
+  function closePortfolio() {
+    const el = document.getElementById('portfolio-world');
+    el.classList.remove('visible');
+    setTimeout(() => { el.style.display = 'none'; document.body.style.overflow = ''; }, 500);
+  }
+
+  // ── Tab switching ──
+  function pfShowTab(tab) {
+    document.querySelectorAll('.pf-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pf-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('pf-' + tab).classList.add('active');
+    document.querySelectorAll('.pf-tab').forEach(t => {
+      if (t.textContent.toLowerCase().trim() === tab) t.classList.add('active');
+    });
+  }
+
+  // ── Render portfolio content ──
+  function pfRenderAll() {
+    pfRenderGrid('acting');
+    pfRenderGrid('modeling');
+    pfRenderBlog();
+  }
+
+  function pfRenderGrid(type) {
+    const photos = pfAlbums[type];
+    const grid = document.getElementById('pf-' + type + '-grid');
+    const empty = document.getElementById('pf-' + type + '-empty');
+    grid.innerHTML = '';
+    if (!photos || photos.length === 0) {
+      grid.style.display = 'none'; empty.style.display = 'block'; return;
+    }
+    grid.style.display = ''; empty.style.display = 'none';
+    photos.forEach((p, i) => {
+      const item = document.createElement('div');
+      item.className = 'pf-grid-item';
+      item.innerHTML = `<img src="${p.src}" loading="lazy" alt="${p.caption || ''}">`;
+      grid.appendChild(item);
+    });
+  }
+
+  function pfRenderBlog() {
+    const list = document.getElementById('pf-blog-list');
+    const empty = document.getElementById('pf-blog-empty');
+    list.innerHTML = '';
+    if (!blogPosts || blogPosts.length === 0) {
+      list.style.display = 'none'; empty.style.display = 'block'; return;
+    }
+    list.style.display = ''; empty.style.display = 'none';
+    blogPosts.forEach((post, i) => {
+      const el = document.createElement('div');
+      el.className = 'blog-post';
+      el.innerHTML = `
+        <p class="blog-post-date">${post.date}</p>
+        <h3 class="blog-post-title">${post.title}</h3>
+        <p class="blog-post-excerpt">${post.excerpt}</p>
+        <div class="blog-post-body" id="blog-body-${i}">${post.body}</div>
+        <button class="blog-read-more" onclick="blogToggle(${i})">Read More &rarr;</button>
+      `;
+      list.appendChild(el);
+    });
+  }
+
+  function blogToggle(i) {
+    const body = document.getElementById('blog-body-' + i);
+    const btn = body.nextElementSibling;
+    const open = body.style.display === 'block';
+    body.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? 'Read More →' : 'Close ←';
+  }
+
+  // ── Auto-open if portfolio mode is public ──
+  if (PORTFOLIO_MODE_PUBLIC) {
+    document.querySelector('body > *:not(#portfolio-world):not(#unlock-overlay)') && null;
+    // When public: hide tribute, show portfolio by default
+    document.querySelectorAll('nav, #hero, #beginning, .full-bleed, #world, #wedding, #rayna, #letter, footer:not(.pf-footer)').forEach(el => el.style.display = 'none');
+    openPortfolio();
+  }
 </script>
 </body>
 </html>
