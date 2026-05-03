@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sakshee - A Mother's Day Tribute</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf7f2; --warm: #f2ece0; --gold: #c9a96e; --gold-light: #e8d5a3;
+      --gold-dim: rgba(201,169,110,0.25); --ink: #18120e; --ink-2: #3a2e26;
+      --ink-3: #7a6355; --rose: #b5605a; --dark: #120e0a;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.8rem 6vw; display: flex; justify-content: space-between; align-items: center; transition: all 0.5s; }
+    nav.scrolled { background: rgba(18,14,10,0.92); backdrop-filter: blur(16px); padding: 1rem 6vw; }
+    .nav-logo { font-size: 1rem; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.9); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* HERO */
+    #hero { height: 100vh; min-height: 700px; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; background: url('photos/top top hero.jpg') center 30% / cover no-repeat; filter: brightness(0.65); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,14,10,0.1) 0%, rgba(18,14,10,0.3) 50%, rgba(18,14,10,0.88) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 0 8vw 10vh; }
+    .hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .hero-name { font-size: clamp(4.5rem, 13vw, 11rem); font-weight: 300; color: #fff; line-height: 0.88; letter-spacing: -0.02em; }
+    .hero-name em { font-style: italic; color: var(--gold-light); }
+    .hero-tagline { margin-top: 2rem; font-size: clamp(1rem, 2vw, 1.4rem); font-style: italic; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 480px; }
+    .hero-scroll { position: absolute; bottom: 3rem; right: 6vw; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .scroll-bar { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollAnim 2.2s ease infinite; }
+    @keyframes scrollAnim { 0%,100% { opacity: 0.3; transform: scaleY(0.4); } 50% { opacity: 1; transform: scaleY(1); } }
+
+    /* SHARED */
+    .label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .title { font-size: clamp(2.2rem, 5.5vw, 4.5rem); font-weight: 300; line-height: 1.05; color: var(--ink); }
+    .title em { font-style: italic; color: var(--ink-3); }
+    .title-light { color: #fff; }
+    .title-light em { color: var(--gold-light); }
+    .rule { width: 50px; height: 1px; background: var(--gold); margin: 2rem 0; }
+    .rule-light { background: rgba(201,169,110,0.5); }
+    p.body { font-size: 1.1rem; font-weight: 300; line-height: 1.95; color: var(--ink-2); margin-bottom: 1.3rem; }
+    p.body-light { color: rgba(250,247,242,0.72); }
+    p.large { font-size: clamp(1.3rem, 2.5vw, 1.65rem); font-style: italic; line-height: 1.6; color: var(--ink); margin-bottom: 1.5rem; }
+    p.nepali { font-size: 1.05rem; font-style: italic; color: var(--gold); margin-top: 1.5rem; }
+
+    /* BEGINNING */
+    #beginning { padding: 8rem 8vw; display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center; }
+    .beginning-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .beginning-photos img { width: 100%; aspect-ratio: 2/3; object-fit: cover; object-position: top; }
+    .beginning-photos img:first-child { grid-column: 1/-1; aspect-ratio: 16/10; object-position: center 25%; }
+    @media (max-width: 900px) { #beginning { grid-template-columns: 1fr; gap: 4rem; } }
+
+    /* FULL BLEED */
+    .full-bleed { position: relative; overflow: hidden; height: 85vh; }
+    .full-bleed img { width: 100%; height: 100%; object-fit: cover; }
+    .full-bleed-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,14,10,0.8) 0%, transparent 60%); }
+    .full-bleed-text { position: absolute; bottom: 5rem; left: 8vw; z-index: 2; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,0.5); }
+    .full-bleed-text .quote { font-size: clamp(1.6rem, 4vw, 3.2rem); font-style: italic; font-weight: 300; line-height: 1.35; max-width: 600px; }
+    .full-bleed-text .attr { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-light); margin-top: 1rem; }
+
+    /* THE WORLD - DESTINATION CARDS */
+    #world { background: var(--dark); padding: 8rem 8vw; }
+    .world-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; margin-bottom: 5rem; }
+    @media (max-width: 900px) { .world-intro { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .destination-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 1rem; }
+    @media (max-width: 900px) { .destination-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .destination-cards { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+    .dest-card {
+      position: relative; cursor: pointer; overflow: hidden;
+      aspect-ratio: 3/4; border: 1px solid var(--gold-dim);
+      transition: border-color 0.3s;
+    }
+    .dest-card:hover { border-color: var(--gold); }
+    .dest-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.55); transition: filter 0.5s, transform 0.6s; }
+    .dest-card:hover img { filter: brightness(0.4); transform: scale(1.04); }
+    .dest-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.5rem; }
+    .dest-card-name { font-size: 1.8rem; font-style: italic; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 0.4rem; }
+    .dest-card-count { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .dest-card-cta { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.75rem; transition: color 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+    .dest-card:hover .dest-card-cta { color: var(--gold-light); }
+    .dest-card-cta::after { content: '→'; }
+    .dest-card.coming-soon { opacity: 0.45; cursor: default; }
+    .dest-card.coming-soon:hover img { filter: brightness(0.55); transform: none; }
+
+    /* LIGHTBOX */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(12,8,5,0.97);
+      display: none; flex-direction: column;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox.visible { opacity: 1; }
+
+    .lb-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 4vw; border-bottom: 1px solid rgba(201,169,110,0.15); flex-shrink: 0;
+    }
+    .lb-title { font-size: 1.5rem; font-style: italic; font-weight: 300; color: #fff; }
+    .lb-subtitle { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
+    .lb-close { background: none; border: 1px solid rgba(201,169,110,0.3); color: rgba(255,255,255,0.7); width: 42px; height: 42px; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+    .lb-close:hover { border-color: var(--gold); color: #fff; }
+
+    .lb-body { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+    /* Masonry-style scrollable grid */
+    .lb-grid {
+      flex: 1; overflow-y: auto; padding: 2rem 4vw;
+      columns: 3; column-gap: 0.75rem;
+    }
+    @media (max-width: 768px) { .lb-grid { columns: 2; } }
+    @media (max-width: 480px) { .lb-grid { columns: 1; } }
+
+    .lb-grid-item {
+      break-inside: avoid; margin-bottom: 0.75rem; cursor: pointer; overflow: hidden; position: relative;
+    }
+    .lb-grid-item img { width: 100%; display: block; transition: transform 0.4s, filter 0.3s; filter: brightness(0.9); }
+    .lb-grid-item:hover img { transform: scale(1.03); filter: brightness(1); }
+
+    /* Single image viewer */
+    #lb-viewer {
+      display: none; position: fixed; inset: 0; z-index: 1100;
+      background: rgba(0,0,0,0.96); align-items: center; justify-content: center;
+    }
+    #lb-viewer.open { display: flex; }
+    #lb-viewer img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lb-viewer-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 2rem; cursor: pointer; transition: color 0.3s; }
+    .lb-viewer-close:hover { color: #fff; }
+    .lb-viewer-prev, .lb-viewer-next { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); width: 50px; height: 50px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+    .lb-viewer-prev:hover, .lb-viewer-next:hover { border-color: var(--gold); color: var(--gold-light); }
+    .lb-viewer-prev { left: 2rem; }
+    .lb-viewer-next { right: 2rem; }
+
+    /* WEDDING */
+    #wedding { padding: 8rem 8vw; }
+    .wedding-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 7rem; align-items: center; margin-top: 4rem; }
+    .wedding-main-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+    .wedding-side { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .wedding-side img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+    .wedding-side img:nth-child(2) { margin-top: 2rem; }
+    .wedding-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.5rem; }
+    .wedding-strip img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+    @media (max-width: 900px) { .wedding-layout { grid-template-columns: 1fr; gap: 3rem; } .wedding-strip { grid-template-columns: 1fr 1fr; } }
+
+    /* RAYNA */
+    #rayna { background: var(--warm); padding: 8rem 8vw; }
+    .rayna-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 7rem; align-items: center; margin-top: 4rem; }
+    .rayna-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .rayna-photos img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+    .rayna-photos img.span { grid-column: 1/-1; aspect-ratio: 16/9; object-position: center 25%; }
+    .rayna-word { font-size: 2.2rem; font-style: italic; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+    @media (max-width: 900px) { .rayna-layout { grid-template-columns: 1fr; gap: 4rem; } }
+
+    /* LETTER */
+    #letter { padding: 10rem 8vw; display: flex; justify-content: center; }
+    .letter-wrap { max-width: 660px; width: 100%; }
+    .letter-date { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 3rem; }
+    .letter-body { font-size: 1.15rem; font-weight: 300; line-height: 2; color: var(--ink-2); }
+    .letter-body p { margin-bottom: 1.5rem; }
+    .letter-opening { font-size: clamp(1.4rem, 3vw, 1.8rem); font-style: italic; color: var(--ink); line-height: 1.5; margin-bottom: 2.5rem; }
+    .letter-sig { margin-top: 3.5rem; font-size: 1.5rem; font-style: italic; color: var(--ink-3); }
+    .letter-sig span { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-style: normal; letter-spacing: 0.2em; color: var(--gold); margin-top: 0.5rem; }
+
+    /* FOOTER */
+    footer { background: var(--dark); text-align: center; padding: 5rem 8vw; }
+    .footer-name { font-size: clamp(2rem, 6vw, 4rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1.5rem; }
+    .footer-sub { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.up { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Sakshee</div>
+  <ul class="nav-links">
+    <li><a href="#beginning">The Beginning</a></li>
+    <li><a href="#world">The World</a></li>
+    <li><a href="#wedding">The Wedding</a></li>
+    <li><a href="#rayna">Rayna</a></li>
+    <li><a href="#letter">A Note</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">For Sakshee - Mother's Day 2026</p>
+    <h1 class="hero-name">Sakshee<br><em>Sharmaa</em></h1>
+    <p class="hero-tagline">The first time I saw her, she was on the stage.<br>From that moment on, I never looked away.</p>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
+</section>
+
+<!-- THE BEGINNING -->
+<section id="beginning">
+  <div class="reveal">
+    <p class="label">Chapter One</p>
+    <h2 class="title">New York City.<br><em>The Beginning.</em></h2>
+    <div class="rule"></div>
+    <p class="large">She was performing Off-Broadway the first time I saw her. I watched her from the audience and thought: whoever she is, I need to know her.</p>
+    <p class="body">She was born in Nepal, raised in Mumbai and came to New York with something you can't teach — a presence. A certainty about who she is. She moved through that city the way she moves through everything: with determination and grace, without apology.</p>
+    <p class="body">We found each other in the middle of the most electric city on earth. The pandemic came and the streets emptied. It was just the two of us in New York. We chose each other, over and over, through all of it.</p>
+    <p class="nepali">माया - Love. In Nepali, it sounds like exactly what it means.</p>
+  </div>
+  <div class="beginning-photos reveal reveal-delay-1">
+    <img src="photos/the beginning 1.jpg" alt="Sakshee">
+    <img src="photos/the beginning 2.JPG" alt="Sakshee">
+    <img src="photos/the beginning 3.JPG" alt="Sakshee">
+  </div>
+</section>
+
+<!-- FULL BLEED 1 -->
+<div class="full-bleed reveal">
+  <img src="photos/000064480008---6476fdbe-53f0-45d3-b097-8d263bf2c789.jpg" alt="Sakshee in Egypt" style="object-position: center 30%;">
+  <div class="full-bleed-overlay"></div>
+  <div class="full-bleed-text">
+    <p class="quote">She carries herself like she belongs<br>to every ancient thing.</p>
+    <p class="attr">Egypt - Valley of the Kings</p>
+  </div>
+</div>
+
+<!-- THE WORLD -->
+<section id="world">
+  <div class="world-intro">
+    <div class="reveal">
+      <p class="label" style="color:var(--gold)">Chapter Two</p>
+      <h2 class="title title-light">We Traveled<br><em>the World.</em></h2>
+      <div class="rule rule-light"></div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p class="body body-light">Across the US. Hot air balloons over Luxor at sunrise. The Taj Mahal at dawn. The gold souk in Dubai. Paris in autumn, and a moment I had planned for months.</p>
+      <p class="body body-light">She was radiant in every country, in every light. She has the rare quality of making every place feel like it was made for her.</p>
+      <p class="body body-light">Click any destination to open the album.</p>
+    </div>
+  </div>
+
+  <!-- DESTINATION CARDS -->
+  <div class="destination-cards reveal">
+
+    <div class="dest-card" onclick="openAlbum('egypt')">
+      <img src="photos/000064480020---ab8f59ca-8556-4fa7-be28-48ae2b75d724.jpg" alt="Egypt">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">Egypt</div>
+        <div class="dest-card-count">Valley of the Kings · Luxor · Karnak</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('india')">
+      <img src="photos/India copy/haldi and mehendi/000075710003.jpg" alt="India">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">India</div>
+        <div class="dest-card-count">Panchgani · Agra · Delhi · The Wedding</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('paris')">
+      <img src="photos/paris New batch of the best copy/NYC02589.jpg" alt="Paris">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">Paris</div>
+        <div class="dest-card-count">The Proposal · Autumn in France</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('yellowstone')">
+      <img src="photos/Yellowstone 0621 copy/00006680/000066800003.jpg" alt="Yellowstone">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">Yellowstone</div>
+        <div class="dest-card-count">Wyoming · Summer 2021</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('uae')">
+      <img src="photos/UAE/IMG_0288.jpg" alt="UAE">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">UAE</div>
+        <div class="dest-card-count">Dubai · Desert · Gold Souk</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('keywest')">
+      <img src="photos/Key West Color copy/hero image keywest.jpg" alt="Key West">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">Key West</div>
+        <div class="dest-card-count">Florida Keys · Sunsets · The Water</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('usvi')">
+      <img src="photos/USVI/IMG_0189.jpg" alt="USVI">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">USVI</div>
+        <div class="dest-card-count">U.S. Virgin Islands</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openAlbum('niagara')">
+      <img src="photos/Niagra Falls Color copy/000043200001.jpg" alt="Niagara Falls">
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">Niagara</div>
+        <div class="dest-card-count">Niagara Falls · New York</div>
+        <div class="dest-card-cta">Open Album</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FULL BLEED 2 -->
+<div class="full-bleed reveal">
+  <img src="photos/dd335593-6233-4126-9c62-7c6cc0d7abe9.jpg" alt="Luxor sunset" style="object-position: center center;">
+  <div class="full-bleed-overlay"></div>
+  <div class="full-bleed-text">
+    <p class="quote">Some mornings you rise<br>above everything.</p>
+    <p class="attr">Luxor, Egypt - Sunrise</p>
+  </div>
+</div>
+
+<!-- THE WEDDING -->
+<section id="wedding">
+  <div class="reveal">
+    <p class="label">Chapter Three</p>
+    <h2 class="title">Paris.<br><em>She Said Yes.</em></h2>
+    <div class="rule"></div>
+    <p class="large" style="max-width:600px">I had planned it for months. I got down on one knee in Paris. She looked at me like I was the only person in the entire city.</p>
+    <p class="body" style="max-width:580px">Our wedding wasn't planned the way most are. It came quickly, in a hard season, with family scattered across continents and so much improvised at the last moment. But she wore her culture like she was born for it — and as we walked the seven circles around the fire, her joy was the only thing in the room. Watching her find that joy through everything she was carrying remains the most beautiful thing I have ever seen.</p>
+  </div>
+
+  <div class="wedding-layout reveal">
+    <img class="wedding-main-img" src="photos/SAR55674_copy---e537503d-0f09-4c3a-8eab-b0ff2fbf6e88.jpg" alt="Wedding">
+    <div>
+      <div class="wedding-side">
+        <img src="photos/SAR55662_copy---a9b2eda8-5044-4822-b194-71aa66f21a80.jpg" alt="Wedding" loading="lazy">
+        <img src="photos/SAR55671_copy---01f06e00-104e-4372-b517-dd295f6de772.jpg" alt="Wedding" loading="lazy">
+      </div>
+      <div style="margin-top:2rem">
+        <p class="body" style="font-style:italic; color:var(--ink-3); font-size:1.2rem;">"However we got there, she got there glowing. I’d do all of it again just to see her like that."</p>
+        <p class="nepali">विवाह - Bibāha. Sacred union.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wedding-strip reveal">
+    <img src="photos/SAR55676_copy---6437c787-61da-45f1-8318-ebb62efe0b02.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR55709_copy---45255965-19a4-4480-8f2d-79ae27ba2254.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR55725_copy---82e9988b-cc0f-479a-9778-d199da37bac0.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR55746_copy---6fcaa28c-d0f2-457e-8237-3c5d6cbb9be6.jpg" alt="Wedding" loading="lazy">
+  </div>
+  <div class="wedding-strip reveal" style="margin-top:0.75rem">
+    <img src="photos/SAR55763_copy---2266cfcf-6dd0-40d3-95f0-d1a61427e40e.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR55977_copy---b2aa8a3f-053d-4e31-95e0-64b1e4801a5c.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR55996_copy---3209c60c-c125-4517-a02a-3ee7ec427b9d.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR56025_copy---a78ba949-569a-408d-85cc-585214181091.jpg" alt="Wedding" loading="lazy">
+  </div>
+  <div class="wedding-strip reveal" style="margin-top:0.75rem">
+    <img src="photos/SAR56043_copy---6c406c38-f4ff-46b4-a84e-5d641cbafe08.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR56063_copy---a33cc8d1-ec9e-4c76-8a04-c0c747f498d6.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR56115_copy---c0f36466-b86c-414d-9c5c-c00a5e313e06.jpg" alt="Wedding" loading="lazy">
+    <img src="photos/SAR56120_copy---96fe6804-cc83-4e91-8acd-485b29b0c9d0.jpg" alt="Wedding" loading="lazy">
+  </div>
+</section>
+
+<!-- FULL BLEED 3 -->
+<div class="full-bleed reveal">
+  <img src="photos/Rayna copy/Maternity Shoot/PHOTO-2024-08-16-14-49-50.jpg" alt="Expecting Rayna" style="object-position: center 30%;">
+  <div class="full-bleed-overlay"></div>
+  <div class="full-bleed-text">
+    <p class="quote">Before Rayna arrived,<br>she was already a mother.</p>
+    <p class="attr">Florida - Expecting Rayna</p>
+  </div>
+</div>
+
+<!-- RAYNA -->
+<section id="rayna">
+  <div class="reveal">
+    <p class="label">Chapter Four</p>
+    <h2 class="title">Rayna - <em>रेना</em></h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="rayna-layout">
+    <div class="rayna-photos reveal">
+      <img class="span" src="photos/Rayna copy/Baby Shoot/SLP_1741.jpg" alt="Sakshee and newborn Rayna" loading="lazy">
+      <img src="photos/Rayna copy/Baby Shoot/SLP_1759.jpg" alt="Rayna" loading="lazy">
+      <img src="photos/Rayna copy/Baby Shoot/SLP_1781.jpg" alt="Rayna" loading="lazy">
+    </div>
+    <div class="reveal reveal-delay-1">
+      <span class="rayna-word">आमा - Aama.</span>
+      <p class="label" style="margin-bottom:0.5rem;margin-top:0.25rem">Mother. The word Rayna will learn first.</p>
+      <div class="rule"></div>
+      <p class="body">She became a mother the same way she does everything - fully, completely, without holding anything back. She held Rayna in the first hours of her life with a calm that could only come from someone who had already decided this was the most important thing she would ever do.</p>
+      <p class="body">Rayna has her mother's eyes. And already, her mother's fire. She is going to be extraordinary - because she wakes up every morning watching an extraordinary woman.</p>
+      <p class="body">The way Sakshee loves Rayna is the most beautiful thing I have ever witnessed.</p>
+      <p class="nepali">आफ्नो बाटो आफैँ बनाउने -<br>She makes her own path.</p>
+    </div>
+  </div>
+
+  <div class="wedding-strip reveal" style="margin-top:4rem">
+    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-2-Edit-Edit.jpg" alt="Rayna Cake Smash" loading="lazy">
+    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-20-Edit.jpg" alt="Rayna 1st Birthday" loading="lazy">
+    <img src="photos/Rayna copy/Christmas 2025/Paquin-7-Edit.jpg" alt="Christmas 2025" loading="lazy">
+    <img src="photos/Rayna copy/Christmas 2025/Paquin-16-Edit.jpg" alt="Family Christmas" loading="lazy">
+  </div>
+  <div class="wedding-strip reveal" style="margin-top:0.75rem">
+    <img src="photos/Rayna copy/Baby Shoot/SLP_1820.jpg" alt="Rayna" loading="lazy">
+    <img src="photos/Rayna copy/Baby Shoot/SLP_1853.jpg" alt="Rayna" loading="lazy">
+    <img src="photos/Rayna copy/Baby Shoot/SLP_1909.jpg" alt="Rayna" loading="lazy">
+    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-50-Edit.jpg" alt="Rayna" loading="lazy">
+  </div>
+</section>
+
+<!-- THE LETTER -->
+<section id="letter">
+  <div class="letter-wrap reveal">
+    <p class="letter-date">Mother's Day - May 2026</p>
+    <div class="letter-body">
+      <p class="letter-opening">To Sakshee -<br>the woman who made me understand<br>what it means to really see someone.</p>
+      <p>I met you on a stage in New York. You were playing someone else, and somehow that’s how I learned who you were — there was no hiding it, even inside another person’s lines. I didn’t know you yet. I knew I would.</p>
+      <p>We’ve traveled the world together — Egypt at dawn, India to walk the land you came from, the UAE to explore somewhere new on my birthday, Paris in summer. In every one of those places, you were the thing I couldn’t look away from. Not because of how you look. Because of who you are in every room you walk into.</p>
+      <p>I got down on one knee in Paris. You looked at me the way you look at everything you love — all the way in, no part held back. I’ve been chasing that look ever since.</p>
+      <p>Then came Rayna. And I watched something open in you that only you knew was there. You held her the first day and looked at her like you’d known her forever. Because you had.</p>
+      <p>You are a great artist. A great role model. A great friend, daughter, partner. But the thing you do best — the thing I’ll tell Rayna about when she’s old enough to understand — is love. You love the way you do everything: all the way in, no part held back. Our daughter will spend her whole life knowing exactly what that feels like.<br>You are a great mother.</p>
+      <p>Thank you for New York. For every country we've stood in together. For Paris. For Rayna. For being exactly, completely, unapologetically you.</p>
+      <p style="font-style:italic; color:var(--rose); font-size:1.2rem;">तिमीलाई माया गर्छु - I love you. Always.</p>
+    </div>
+    <div class="letter-sig">Anthony<span>Forever & Always</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Sakshee Sharmaa Paquin</span>
+  <p class="footer-sub">With love - Mother's Day 2026</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-header">
+    <div>
+      <div class="lb-title" id="lb-title">Egypt</div>
+      <div class="lb-subtitle" id="lb-subtitle">Valley of the Kings · Luxor · Karnak</div>
+    </div>
+    <button class="lb-close" onclick="closeAlbum()">✕</button>
+  </div>
+  <div class="lb-body">
+    <div class="lb-grid" id="lb-grid"></div>
+  </div>
+</div>
+
+<!-- SINGLE IMAGE VIEWER -->
+<div id="lb-viewer">
+  <button class="lb-viewer-close" onclick="closeViewer()">✕</button>
+  <button class="lb-viewer-prev" onclick="viewerNav(-1)">‹</button>
+  <img id="lb-viewer-img" src="" alt="">
+  <button class="lb-viewer-next" onclick="viewerNav(1)">›</button>
+</div>
+
+<script>
+  // Nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+  // Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  // Album data - add more destinations as photos arrive
+  const albums = {
+    egypt: {
+      title: 'Egypt',
+      subtitle: 'Valley of the Kings · Luxor · Karnak Temple',
+      photos: [
+        'photos/000064480008---6476fdbe-53f0-45d3-b097-8d263bf2c789.jpg',
+        'photos/000064480020---ab8f59ca-8556-4fa7-be28-48ae2b75d724.jpg',
+        'photos/000064470008---579338a0-c58a-4d92-b2b5-07c4a7710ea4.jpg',
+        'photos/000064480021---5ebb6272-6b05-4c27-b89d-2cbbc9d1f8d4.jpg',
+        'photos/000064480022---96ab03f5-2919-4fad-b328-f590a0c907bd.jpg',
+        'photos/000064480009---ec6a254b-2a8c-427f-a62b-fa57be614382.jpg',
+        'photos/000064480023---bac3648d-5a55-494f-a76c-015e201cd429.jpg',
+        'photos/000064470005---96ca34de-6bda-409e-84c5-bc76b226a3a4.jpg',
+        'photos/000064480031---8038b002-cc00-4cd0-8975-ce1ee21388b0.jpg',
+        'photos/000064480026---51c3c6e2-c07f-4c91-99d3-c080acf3797a.jpg',
+        'photos/000064480032---27d29ea8-b54a-4905-aa77-725c34c2a909.jpg',
+        'photos/000064470021---a0074210-6d74-4af9-afc6-1be7e42853df.jpg',
+        'photos/000064470023---0b281406-2ade-4d35-b200-38de3e83294c.jpg',
+        'photos/000064480034---d06ee492-d618-4cf3-9d65-e406592f2c94.jpg',
+        'photos/000064480035---ef02a2e7-abe5-4969-a145-f256d6653669.jpg',
+        'photos/000064480027---1589f7c2-eeaa-4534-b0df-d27454ebc9e4.jpg',
+        'photos/000064480025---fc9bd001-4ebc-4e57-9c93-f98001e0154e.jpg',
+        'photos/000064470009---a79c9813-2207-44ba-b5c0-267a58b3419a.jpg',
+        'photos/000064470020---c947cd81-5a1b-4ac6-ae85-5206f984e294.jpg',
+        'photos/000064490025---c82f9855-1613-48ad-a2ae-db27ae0efab5.jpg',
+        'photos/000064490026---cde7f507-6fbb-4760-9e90-c960858c5209.jpg',
+        'photos/000064490027---bbe68df4-cb5c-4c88-b39b-82da03b3f83a.jpg',
+        'photos/000064490018---672fd444-2d6a-4e38-8807-e12d80b80460.jpg',
+        'photos/000064490019---3cef3abe-6fc5-483d-bd50-7566d22fc9e9.jpg',
+        'photos/000064490024---b3850fa6-1e17-4b0d-9bda-ca17e83a478a.jpg',
+        'photos/000064480033---1d342eeb-74f9-4d09-a9c6-37f1c03726d3.jpg',
+        'photos/000064480036---e369915d-f3c5-4d69-8343-f5e1f5c16bf2.jpg',
+        'photos/000064470001---94d86329-31f0-4aa8-897f-d29f292087d1.jpg',
+        'photos/000064470002---b54a5182-b7c2-405b-8de1-851f13999552.jpg',
+        'photos/000064470003---12f94c6c-b62d-4164-9b6f-f3cb067072a3.jpg',
+        'photos/000064470004---c8ad24e2-25a7-4288-9544-7f86032d62df.jpg',
+        'photos/000064470010---6aff6938-f211-407c-992d-ce84d35f18d4.jpg',
+        'photos/000064470011---e4193e18-1ce5-4084-b1d8-7f909d7d6a84.jpg',
+      ]
+    },
+    paris: {
+      title: 'Paris',
+      subtitle: 'The Proposal · Autumn in France',
+      photos: [
+        'photos/paris New batch of the best copy/NYC02589.jpg',
+        'photos/paris New batch of the best copy/NYC02593.jpg',
+        'photos/paris New batch of the best copy/NYC02599.jpg',
+        'photos/paris New batch of the best copy/NYC02602.jpg',
+        'photos/paris New batch of the best copy/NYC02631.jpg',
+        'photos/paris New batch of the best copy/NYC02644.jpg',
+        'photos/paris New batch of the best copy/NYC02700.jpg',
+        'photos/paris New batch of the best copy/NYC02703.jpg',
+        'photos/paris New batch of the best copy/NYC02712.jpg',
+        'photos/paris New batch of the best copy/NYC02713.jpg',
+        'photos/paris New batch of the best copy/NYC02716.jpg',
+        'photos/paris New batch of the best copy/NYC02723.jpg',
+        'photos/paris New batch of the best copy/NYC02730.jpg',
+        'photos/paris New batch of the best copy/NYC02733.jpg',
+        'photos/paris New batch of the best copy/NYC02740.jpg',
+        'photos/paris New batch of the best copy/NYC02747.jpg',
+        'photos/paris New batch of the best copy/NYC02809.jpg',
+        'photos/paris New batch of the best copy/NYC02867.jpg',
+        'photos/paris New batch of the best copy/NYC02870.jpg',
+        'photos/paris New batch of the best copy/NYC02891.jpg',
+        'photos/paris Engaged copy/NYC02546.JPG',
+        'photos/paris Engaged copy/NYC02558.JPG',
+        'photos/paris Engaged copy/NYC02565.JPG',
+        'photos/paris Engaged copy/NYC02567.JPG',
+        'photos/paris Engaged copy/NYC02580.JPG',
+      ]
+    },
+    india: {
+      title: 'India',
+      subtitle: 'Panchgani · Agra · Delhi · The Wedding',
+      photos: [
+        'photos/India copy/haldi and mehendi/000075710001.jpg',
+        'photos/India copy/haldi and mehendi/000075710002.jpg',
+        'photos/India copy/haldi and mehendi/000075710003.jpg',
+        'photos/India copy/haldi and mehendi/000075710004.jpg',
+        'photos/India copy/haldi and mehendi/000075710005.jpg',
+        'photos/India copy/haldi and mehendi/000075710006.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690001.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690002.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690003.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690004.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690005.jpg',
+        'photos/India copy/wedding and panchgani arrival/000075690006.jpg',
+        'photos/India copy/gateway and home mehendi/000075650001.jpg',
+        'photos/India copy/gateway and home mehendi/000075650002.jpg',
+        'photos/India copy/gateway and home mehendi/000075650003.jpg',
+        'photos/India copy/gateway and home mehendi/000075650004.jpg',
+        'photos/India copy/gateway and home mehendi/000075650005.jpg',
+        'photos/India copy/agra aand llotus/000075660003.jpg',
+        'photos/India copy/agra aand llotus/000075660004.jpg',
+        'photos/India copy/agra aand llotus/000075660005.jpg',
+        'photos/India copy/agra aand llotus/000075660006.jpg',
+        'photos/India copy/agra aand llotus/000075660007.jpg',
+        'photos/India copy/panchgani and agra/000075700001.jpg',
+        'photos/India copy/panchgani and agra/000075700002.jpg',
+        'photos/India copy/panchgani and agra/000075700003.jpg',
+        'photos/India copy/panchgani and agra/000075700004.jpg',
+        'photos/India copy/panchgani and agra/000075700005.jpg',
+        'photos/India copy/panchgani and agra/000075700006.jpg',
+      ]
+    },
+    uae: {
+      title: 'UAE',
+      subtitle: 'Dubai · Desert · Gold Souk',
+      photos: [
+        'photos/UAE/IMG_0288.jpg',
+        'photos/UAE/IMG_0304.jpg',
+        'photos/UAE/IMG_0313.jpg',
+        'photos/UAE/IMG_0339.jpg',
+        'photos/UAE/IMG_0395.jpg',
+        'photos/UAE/IMG_0434.jpg',
+        'photos/UAE/IMG_0513.jpg',
+        'photos/UAE/IMG_0550.jpg',
+        'photos/UAE/IMG_0584.jpg',
+        'photos/UAE/IMG_0589.jpg',
+        'photos/UAE/IMG_0613.jpg',
+        'photos/UAE/IMG_0621.jpg',
+        'photos/UAE/IMG_0626.jpg',
+        'photos/UAE/IMG_0672.jpg',
+        'photos/UAE/IMG_0701.jpg',
+        'photos/UAE/IMG_0723.jpg',
+        'photos/UAE/IMG_0735.jpg',
+        'photos/UAE/IMG_0808.jpg',
+        'photos/UAE/IMG_0816.jpg',
+        'photos/UAE/IMG_0829.jpg',
+        'photos/UAE/IMG_0844.jpg',
+        'photos/UAE/IMG_0964.jpg',
+        'photos/UAE/IMG_0989.jpg',
+        'photos/UAE/IMG_1006.jpg',
+      ]
+    },
+    keywest: {
+      title: 'Key West',
+      subtitle: 'Florida Keys · Sunsets · The Water',
+      photos: [
+        'photos/Key West Color copy/hero image keywest.jpg',
+        'photos/Key West Color copy/000036120001.jpg',
+        'photos/Key West Color copy/000036120002.jpg',
+        'photos/Key West Color copy/000036120003.jpg',
+        'photos/Key West Color copy/000036120004.jpg',
+        'photos/Key West Color copy/000036120005.jpg',
+        'photos/Key West Color copy/000036120007.jpg',
+        'photos/Key West Color copy/000036120008.jpg',
+        'photos/Key West Color copy/000036120009.jpg',
+        'photos/Key West Color copy/000036120010.jpg',
+        'photos/Key West Color copy/000036120011.jpg',
+        'photos/Key West Color copy/000036120012.jpg',
+        'photos/Key West Color copy/000036120013.jpg',
+        'photos/Key West Color copy/000036120014.jpg',
+        'photos/Key West Color copy/000036120015.jpg',
+        'photos/Key West Color copy/000036120016.jpg',
+        'photos/Key West Color copy/000036120017.jpg',
+        'photos/Key West Color copy/000036120018.jpg',
+        'photos/Key West Color copy/000036120022.jpg',
+        'photos/Key West Color copy/000036120023.jpg',
+        'photos/Key West Color copy/000036120024.jpg',
+        'photos/Key West Color copy/000036120025.jpg',
+        'photos/Key West Color copy/000036120026.jpg',
+        'photos/Key West Color copy/000036120027.jpg',
+        'photos/Key West Color copy/000036120028.jpg',
+        'photos/Key West Color copy/000036120029.jpg',
+        'photos/Key West Color copy/000036120030.jpg',
+      ]
+    },
+    usvi: {
+      title: 'USVI',
+      subtitle: 'U.S. Virgin Islands',
+      photos: [
+        'photos/USVI/63327245858__3D600742-57F1-46DB-9616-F9A2A2D25B2C.jpg',
+        'photos/USVI/IMG_0189.jpg',
+        'photos/USVI/IMG_0209.jpg',
+        'photos/USVI/IMG_0242.JPG',
+        'photos/USVI/IMG_0294.jpg',
+        'photos/USVI/IMG_0352.jpg',
+        'photos/USVI/IMG_0399.jpg',
+        'photos/USVI/IMG_0411.jpg',
+        'photos/USVI/IMG_0422.jpg',
+        'photos/USVI/IMG_0446.jpg',
+        'photos/USVI/IMG_0476.jpg',
+        'photos/USVI/IMG_0521.jpg',
+        'photos/USVI/IMG_0548.jpg',
+        'photos/USVI/IMG_0591.jpg',
+        'photos/USVI/f8364e31-81a5-4a70-9c10-f0e8aef9179e.JPG',
+      ]
+    },
+    niagara: {
+      title: 'Niagara',
+      subtitle: 'Niagara Falls · New York',
+      photos: [
+        'photos/Niagra Falls Color copy/000043200001.jpg',
+        'photos/Niagra Falls Color copy/000043200002.jpg',
+        'photos/Niagra Falls Color copy/000043200003.jpg',
+        'photos/Niagra Falls Color copy/000043200004.jpg',
+        'photos/Niagra Falls Color copy/000043200005.jpg',
+        'photos/Niagra Falls Color copy/000043200006.jpg',
+        'photos/Niagra Falls Color copy/000043200007.jpg',
+        'photos/Niagra Falls Color copy/000043200008.jpg',
+        'photos/Niagra Falls Color copy/000043200009.jpg',
+        'photos/Niagra Falls Color copy/000043200010.jpg',
+        'photos/Niagra Falls Color copy/000043200011.jpg',
+        'photos/Niagra Falls Color copy/000043200012.jpg',
+        'photos/Niagra Falls Color copy/000043200013.jpg',
+        'photos/Niagra Falls Color copy/000043200014.jpg',
+      ]
+    },
+    yellowstone: {
+      title: 'Yellowstone',
+      subtitle: 'Wyoming · Summer 2021',
+      photos: [
+        'photos/Yellowstone 0621 copy/00006680/000066800002.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800003.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800004.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800005.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800006.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800007.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800013.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800017.jpg',
+        'photos/Yellowstone 0621 copy/00006680/000066800022.jpg',
+        'photos/Yellowstone 0621 copy/00006680/8.jpg',
+        'photos/Yellowstone 0621 copy/00006680/9.jpg',
+        'photos/Yellowstone 0621 copy/00006680/10.jpg',
+        'photos/Yellowstone 0621 copy/00006680/11.jpg',
+        'photos/Yellowstone 0621 copy/00006680/12.jpg',
+        'photos/Yellowstone 0621 copy/00006680/13.jpg',
+        'photos/Yellowstone 0621 copy/00006680/14.jpg',
+        'photos/Yellowstone 0621 copy/00006680/15.jpg',
+        'photos/Yellowstone 0621 copy/00006680/16.jpg',
+        'photos/Yellowstone 0621 copy/00006680/17.jpg',
+        'photos/Yellowstone 0621 copy/00006680/21.jpg',
+      ]
+    }
+  };
+
+  let currentAlbum = null;
+  let viewerIndex = 0;
+
+  function openAlbum(key) {
+    const album = albums[key];
+    if (!album) return;
+    currentAlbum = album;
+
+    document.getElementById('lb-title').textContent = album.title;
+    document.getElementById('lb-subtitle').textContent = album.subtitle;
+
+    const grid = document.getElementById('lb-grid');
+    grid.innerHTML = '';
+    album.photos.forEach((src, i) => {
+      const item = document.createElement('div');
+      item.className = 'lb-grid-item';
+      item.innerHTML = `<img src="${src}" loading="lazy" alt="">`;
+      item.onclick = () => openViewer(i);
+      grid.appendChild(item);
+    });
+
+    const lb = document.getElementById('lightbox');
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => lb.classList.add('visible'));
+  }
+
+  function closeAlbum() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('visible');
+    setTimeout(() => { lb.style.display = 'none'; document.body.style.overflow = ''; }, 400);
+  }
+
+  function openViewer(index) {
+    viewerIndex = index;
+    const viewer = document.getElementById('lb-viewer');
+    document.getElementById('lb-viewer-img').src = currentAlbum.photos[viewerIndex];
+    viewer.classList.add('open');
+  }
+
+  function closeViewer() {
+    document.getElementById('lb-viewer').classList.remove('open');
+  }
+
+  function viewerNav(dir) {
+    viewerIndex = (viewerIndex + dir + currentAlbum.photos.length) % currentAlbum.photos.length;
+    document.getElementById('lb-viewer-img').src = currentAlbum.photos[viewerIndex];
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeViewer(); closeAlbum(); }
+    if (e.key === 'ArrowRight') viewerNav(1);
+    if (e.key === 'ArrowLeft') viewerNav(-1);
+  });
+</script>
+</body>
+</html>
