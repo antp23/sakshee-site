@@ -28,10 +28,11 @@
 
     /* HERO */
     #hero { height: 100vh; min-height: 700px; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-img { position: absolute; inset: 0; background: url('photos/top top hero.jpg') center 30% / cover no-repeat; filter: brightness(0.65); }
+    .hero-img { position: absolute; inset: 0; background: url('photos/hero-main.jpg') center 40% / cover no-repeat; filter: brightness(0.65); }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,14,10,0.1) 0%, rgba(18,14,10,0.3) 50%, rgba(18,14,10,0.88) 100%); }
     .hero-content { position: relative; z-index: 2; padding: 0 8vw 10vh; }
     .hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .hero-dedication { margin-top: 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-style: italic; font-weight: 300; color: var(--gold-light); letter-spacing: 0.05em; }
     .hero-name { font-size: clamp(4.5rem, 13vw, 11rem); font-weight: 300; color: #fff; line-height: 0.88; letter-spacing: -0.02em; }
     .hero-name em { font-style: italic; color: var(--gold-light); }
     .hero-tagline { margin-top: 2rem; font-size: clamp(1rem, 2vw, 1.4rem); font-style: italic; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 480px; }
@@ -143,7 +144,7 @@
     .lb-viewer-next { right: 2rem; }
 
     /* WEDDING */
-    #wedding { padding: 8rem 8vw; }
+    #engagement { padding: 8rem 8vw; }
     .wedding-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 7rem; align-items: center; margin-top: 4rem; }
     .wedding-main-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
     .wedding-side { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -223,7 +224,10 @@
     .pf-close-btn:hover { border-color: var(--gold); color: var(--gold-light); }
 
     /* Portfolio hero */
-    .pf-hero { padding: 7rem 8vw 5rem; background: var(--dark); }
+    .pf-hero { padding: 0; background: var(--dark); position: relative; height: 85vh; min-height: 600px; display: flex; align-items: flex-end; overflow: hidden; }
+    .pf-hero-bg { position: absolute; inset: 0; background: url('photos/portfolio-hero.jpg') center 20% / cover no-repeat; filter: brightness(0.6); }
+    .pf-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(12,8,5,0.9) 100%); }
+    .pf-hero-content { position: relative; z-index: 2; padding: 0 8vw 6rem; }
     .pf-hero-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
     .pf-hero-name { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; color: #fff; line-height: 0.9; letter-spacing: -0.02em; }
     .pf-hero-name em { font-style: italic; color: var(--gold-light); }
@@ -269,6 +273,34 @@
 
     /* Portfolio footer */
     .pf-footer { background: var(--dark); text-align: center; padding: 4rem 8vw; }
+
+    /* CMS */
+    .cms-upload-btn { display:inline-flex;align-items:center;gap:0.5rem;font-family:'Montserrat',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:0.65rem 1.4rem;cursor:pointer;transition:all 0.3s;background:transparent;text-decoration:none; }
+    .cms-upload-btn:hover { background:var(--gold);color:#fff; }
+    .cms-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem; }
+    .cms-card { position:relative;border:1px solid rgba(201,169,110,0.2);overflow:hidden;background:#fff; }
+    .cms-card img { width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block; }
+    .cms-card .cms-card-video { width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#000; }
+    .cms-card-doc { width:100%;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f7f3ec;gap:0.5rem; }
+    .cms-card-doc span { font-size:2.5rem; }
+    .cms-card-info { padding:0.75rem;border-top:1px solid rgba(201,169,110,0.15); }
+    .cms-card-name { font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.1em;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:0.4rem; }
+    .cms-card-del { font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rose);cursor:pointer;background:none;border:none;padding:0; }
+    .cms-card-del:hover { text-decoration:underline; }
+    .cms-upload-progress { font-family:'Montserrat',sans-serif;font-size:0.6rem;color:var(--gold);margin-bottom:1rem;letter-spacing:0.1em; }
+    .cms-field { margin-bottom:1.5rem; }
+    .cms-label { display:block;font-family:'Montserrat',sans-serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem; }
+    .cms-input { width:100%;border:1px solid rgba(201,169,110,0.3);background:var(--cream);padding:0.75rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ink);outline:none;transition:border-color 0.3s; }
+    .cms-input:focus { border-color:var(--gold); }
+    .cms-textarea { min-height:220px;resize:vertical; }
+    .blog-post-item { border:1px solid rgba(201,169,110,0.2);padding:1.5rem 2rem;margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;background:#fff; }
+    .blog-post-title { font-size:1.2rem;font-style:italic;color:var(--ink);margin-bottom:0.25rem; }
+    .blog-post-meta { font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3); }
+    .blog-post-actions { display:flex;gap:1rem;flex-shrink:0; }
+    .blog-action-btn { font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:0; }
+    .blog-action-edit { color:var(--gold); }
+    .blog-action-del { color:var(--rose); }
+    .blog-action-btn:hover { text-decoration:underline; }
     .pf-footer-name { font-size: clamp(1.5rem, 4vw, 3rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1rem; }
     .pf-footer-sub { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
@@ -287,7 +319,8 @@
   <ul class="nav-links">
     <li><a href="#beginning">The Beginning</a></li>
     <li><a href="#world">The World</a></li>
-    <li><a href="#wedding">The Wedding</a></li>
+    <li><a href="#engagement">The Engagement</a></li>
+    <li><a href="#wedding-ceremony">The Wedding</a></li>
     <li><a href="#rayna">Rayna</a></li>
     <li><a href="#letter">A Note</a></li>
   </ul>
@@ -298,9 +331,9 @@
   <div class="hero-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">For Sakshee - Mother's Day 2026</p>
     <h1 class="hero-name">Sakshee<br><em>Sharmaa</em></h1>
     <p class="hero-tagline">The first time I saw her, she was on the stage.<br>From that moment on, I never looked away.</p>
+    <p class="hero-dedication">For Sakshee - Mother's Day 2026</p>
   </div>
   <div class="hero-scroll"><div class="scroll-bar"></div>scroll</div>
 </section>
@@ -312,20 +345,20 @@
     <h2 class="title">New York City.<br><em>The Beginning.</em></h2>
     <div class="rule"></div>
     <p class="large">She was performing Off-Broadway the first time I saw her. I watched her from the audience and thought: whoever she is, I need to know her.</p>
-    <p class="body">She was born in Nepal, raised in Mumbai and came to New York with something you can't teach — a presence. A certainty about who she is. She moved through that city the way she moves through everything: with determination and grace, without apology.</p>
+    <p class="body">She was born in Nepal, raised in Mumbai and came to New York with something you can't teach - a presence. A certainty about who she is. She moved through that city the way she moves through everything: with determination and grace, without apology.</p>
     <p class="body">We found each other in the middle of the most electric city on earth. The pandemic came and the streets emptied. It was just the two of us in New York. We chose each other, over and over, through all of it.</p>
     <p class="nepali">माया - Love. In Nepali, it sounds like exactly what it means.</p>
   </div>
   <div class="beginning-photos reveal reveal-delay-1">
-    <img src="photos/the beginning 1.jpg" alt="Sakshee">
-    <img src="photos/the beginning 2.JPG" alt="Sakshee">
-    <img src="photos/the beginning 3.JPG" alt="Sakshee">
+    <img loading="lazy" src="photos/the beginning 1.jpg" alt="Sakshee">
+    <img loading="lazy" src="photos/the beginning 2.JPG" alt="Sakshee">
+    <img loading="lazy" src="photos/the beginning 3.JPG" alt="Sakshee">
   </div>
 </section>
 
 <!-- FULL BLEED 1 -->
 <div class="full-bleed reveal">
-  <img src="photos/000064480008---6476fdbe-53f0-45d3-b097-8d263bf2c789.jpg" alt="Sakshee in Egypt" style="object-position: center 30%;">
+  <img loading="lazy" src="photos/000064480008---6476fdbe-53f0-45d3-b097-8d263bf2c789.jpg" alt="Sakshee in Egypt" style="object-position: center 30%;">
   <div class="full-bleed-overlay"></div>
   <div class="full-bleed-text">
     <p class="quote">She carries herself like she belongs<br>to every ancient thing.</p>
@@ -352,7 +385,7 @@
   <div class="destination-cards reveal">
 
     <div class="dest-card" onclick="openAlbum('egypt')">
-      <img src="photos/000064480020---ab8f59ca-8556-4fa7-be28-48ae2b75d724.jpg" alt="Egypt">
+      <img loading="lazy" src="photos/000064480020---ab8f59ca-8556-4fa7-be28-48ae2b75d724.jpg" alt="Egypt">
       <div class="dest-card-overlay">
         <div class="dest-card-name">Egypt</div>
         <div class="dest-card-count">Valley of the Kings · Luxor · Karnak</div>
@@ -361,7 +394,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('india')">
-      <img src="photos/India copy/haldi and mehendi/000075710003.jpg" alt="India">
+      <img loading="lazy" src="photos/india-tile.jpg" alt="India">
       <div class="dest-card-overlay">
         <div class="dest-card-name">India</div>
         <div class="dest-card-count">Panchgani · Agra · Delhi · The Wedding</div>
@@ -370,7 +403,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('paris')">
-      <img src="photos/paris New batch of the best copy/NYC02589.jpg" alt="Paris">
+      <img loading="lazy" src="photos/paris New batch of the best copy/NYC02589.jpg" alt="Paris">
       <div class="dest-card-overlay">
         <div class="dest-card-name">Paris</div>
         <div class="dest-card-count">The Proposal · Autumn in France</div>
@@ -379,7 +412,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('yellowstone')">
-      <img src="photos/Yellowstone 0621 copy/00006680/000066800003.jpg" alt="Yellowstone">
+      <img loading="lazy" src="photos/Yellowstone 0621 copy/00006680/000066800003.jpg" alt="Yellowstone">
       <div class="dest-card-overlay">
         <div class="dest-card-name">Yellowstone</div>
         <div class="dest-card-count">Wyoming · Summer 2021</div>
@@ -388,7 +421,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('uae')">
-      <img src="photos/UAE/IMG_0288.jpg" alt="UAE">
+      <img loading="lazy" src="photos/UAE/IMG_0288.jpg" alt="UAE">
       <div class="dest-card-overlay">
         <div class="dest-card-name">UAE</div>
         <div class="dest-card-count">Dubai · Desert · Gold Souk</div>
@@ -397,7 +430,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('keywest')">
-      <img src="photos/Key West Color copy/hero image keywest.jpg" alt="Key West">
+      <img loading="lazy" src="photos/Key West Color copy/hero image keywest.jpg" alt="Key West">
       <div class="dest-card-overlay">
         <div class="dest-card-name">Key West</div>
         <div class="dest-card-count">Florida Keys · Sunsets · The Water</div>
@@ -406,7 +439,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('usvi')">
-      <img src="photos/USVI/IMG_0189.jpg" alt="USVI">
+      <img loading="lazy" src="photos/USVI/IMG_0189.jpg" alt="USVI">
       <div class="dest-card-overlay">
         <div class="dest-card-name">USVI</div>
         <div class="dest-card-count">U.S. Virgin Islands</div>
@@ -415,7 +448,7 @@
     </div>
 
     <div class="dest-card" onclick="openAlbum('niagara')">
-      <img src="photos/Niagra Falls Color copy/000043200001.jpg" alt="Niagara Falls">
+      <img loading="lazy" src="photos/Niagra Falls Color copy/000043200001.jpg" alt="Niagara Falls">
       <div class="dest-card-overlay">
         <div class="dest-card-name">Niagara</div>
         <div class="dest-card-count">Niagara Falls · New York</div>
@@ -428,7 +461,7 @@
 
 <!-- FULL BLEED 2 -->
 <div class="full-bleed reveal">
-  <img src="photos/dd335593-6233-4126-9c62-7c6cc0d7abe9.jpg" alt="Luxor sunset" style="object-position: center center;">
+  <img loading="lazy" src="photos/dd335593-6233-4126-9c62-7c6cc0d7abe9.jpg" alt="Luxor sunset" style="object-position: center center;">
   <div class="full-bleed-overlay"></div>
   <div class="full-bleed-text">
     <p class="quote">Some mornings you rise<br>above everything.</p>
@@ -437,52 +470,87 @@
 </div>
 
 <!-- THE WEDDING -->
-<section id="wedding">
+<section id="engagement">
   <div class="reveal">
     <p class="label">Chapter Three</p>
     <h2 class="title">Paris.<br><em>She Said Yes.</em></h2>
     <div class="rule"></div>
     <p class="large" style="max-width:600px">I had planned it for months. I got down on one knee in Paris. She looked at me like I was the only person in the entire city.</p>
-    <p class="body" style="max-width:580px">Our wedding wasn't planned the way most are. It came quickly, in a hard season, with family scattered across continents and so much improvised at the last moment. But she wore her culture like she was born for it — and as we walked the seven circles around the fire, her joy was the only thing in the room. Watching her find that joy through everything she was carrying remains the most beautiful thing I have ever seen.</p>
   </div>
 
   <div class="wedding-layout reveal">
-    <img class="wedding-main-img" src="photos/SAR55674_copy---e537503d-0f09-4c3a-8eab-b0ff2fbf6e88.jpg" alt="Wedding">
+    <img loading="lazy" class="wedding-main-img" src="photos/p1.jpg" alt="Paris">
     <div>
       <div class="wedding-side">
-        <img src="photos/SAR55662_copy---a9b2eda8-5044-4822-b194-71aa66f21a80.jpg" alt="Wedding" loading="lazy">
-        <img src="photos/SAR55671_copy---01f06e00-104e-4372-b517-dd295f6de772.jpg" alt="Wedding" loading="lazy">
+        <img loading="lazy" src="photos/p2.jpg" alt="Paris">
+        <img loading="lazy" src="photos/p3.jpg" alt="Paris">
       </div>
       <div style="margin-top:2rem">
-        <p class="body" style="font-style:italic; color:var(--ink-3); font-size:1.2rem;">"However we got there, she got there glowing. I’d do all of it again just to see her like that."</p>
+        <p class="body" style="font-style:italic; color:var(--ink-3); font-size:1.2rem;">"She said yes. And everything else fell into place."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wedding-strip reveal" style="margin-top:2rem">
+    <img loading="lazy" src="photos/p4.jpg" alt="Paris">
+    <img loading="lazy" src="photos/p5.jpg" alt="Paris">
+    <img loading="lazy" src="photos/p6.jpg" alt="Paris">
+    <img loading="lazy" src="photos/p7.jpg" alt="Paris">
+  </div>
+</section>
+
+<!-- WEDDING -->
+<section id="wedding-ceremony" style="padding: 8rem 8vw; background: var(--warm);">
+  <div class="reveal">
+    <p class="label">Chapter Four</p>
+    <h2 class="title">The Wedding.<br><em>Seven Circles.</em></h2>
+    <div class="rule"></div>
+    <p class="large" style="max-width:600px">Our wedding wasn't planned the way most are. It came quickly, in a hard season, with family scattered across continents and so much improvised at the last moment.</p>
+    <p class="body" style="max-width:580px">But she wore her culture like she was born for it — and as we walked the seven circles around the fire, her joy was the only thing in the room. Watching her find that joy through everything she was carrying remains the most beautiful thing I have ever seen.</p>
+  </div>
+
+  <div class="wedding-layout reveal" style="margin-top:4rem">
+    <img loading="lazy" class="wedding-main-img" src="photos/w1.jpg" alt="Wedding">
+    <div>
+      <div class="wedding-side">
+        <img loading="lazy" src="photos/w2.jpg" alt="Wedding">
+        <img loading="lazy" src="photos/w3.jpg" alt="Wedding">
+      </div>
+      <div style="margin-top:2rem">
+        <p class="body" style="font-style:italic; color:var(--ink-3); font-size:1.2rem;">"However we got there, she got there glowing. I'd do all of it again just to see her like that."</p>
         <p class="nepali">विवाह - Bibāha. Sacred union.</p>
       </div>
     </div>
   </div>
 
-  <div class="wedding-strip reveal">
-    <img src="photos/SAR55676_copy---6437c787-61da-45f1-8318-ebb62efe0b02.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR55709_copy---45255965-19a4-4480-8f2d-79ae27ba2254.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR55725_copy---82e9988b-cc0f-479a-9778-d199da37bac0.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR55746_copy---6fcaa28c-d0f2-457e-8237-3c5d6cbb9be6.jpg" alt="Wedding" loading="lazy">
+  <div class="wedding-strip reveal" style="margin-top:2rem">
+    <img loading="lazy" src="photos/w4.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w5.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w6.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w7.jpg" alt="Wedding">
   </div>
   <div class="wedding-strip reveal" style="margin-top:0.75rem">
-    <img src="photos/SAR55763_copy---2266cfcf-6dd0-40d3-95f0-d1a61427e40e.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR55977_copy---b2aa8a3f-053d-4e31-95e0-64b1e4801a5c.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR55996_copy---3209c60c-c125-4517-a02a-3ee7ec427b9d.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR56025_copy---a78ba949-569a-408d-85cc-585214181091.jpg" alt="Wedding" loading="lazy">
+    <img loading="lazy" src="photos/w8.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w9.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w10.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w11.jpg" alt="Wedding">
   </div>
   <div class="wedding-strip reveal" style="margin-top:0.75rem">
-    <img src="photos/SAR56043_copy---6c406c38-f4ff-46b4-a84e-5d641cbafe08.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR56063_copy---a33cc8d1-ec9e-4c76-8a04-c0c747f498d6.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR56115_copy---c0f36466-b86c-414d-9c5c-c00a5e313e06.jpg" alt="Wedding" loading="lazy">
-    <img src="photos/SAR56120_copy---96fe6804-cc83-4e91-8acd-485b29b0c9d0.jpg" alt="Wedding" loading="lazy">
+    <img loading="lazy" src="photos/w12.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w13.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w14.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w15.jpg" alt="Wedding">
+  </div>
+  <div class="wedding-strip reveal" style="margin-top:0.75rem">
+    <img loading="lazy" src="photos/w16.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w17.jpg" alt="Wedding">
+    <img loading="lazy" src="photos/w18.jpg" alt="Wedding">
   </div>
 </section>
 
 <!-- FULL BLEED 3 -->
 <div class="full-bleed reveal">
-  <img src="photos/Rayna copy/Maternity Shoot/PHOTO-2024-08-16-14-49-50.jpg" alt="Expecting Rayna" style="object-position: center 30%;">
+  <img loading="lazy" src="photos/Rayna copy/Maternity Shoot/PHOTO-2024-08-16-14-49-50.jpg" alt="Expecting Rayna" style="object-position: center 15%;">
   <div class="full-bleed-overlay"></div>
   <div class="full-bleed-text">
     <p class="quote">Before Rayna arrived,<br>she was already a mother.</p>
@@ -493,16 +561,16 @@
 <!-- RAYNA -->
 <section id="rayna">
   <div class="reveal">
-    <p class="label">Chapter Four</p>
+    <p class="label">Chapter Five</p>
     <h2 class="title">Rayna - <em>रेना</em></h2>
     <div class="rule"></div>
   </div>
 
   <div class="rayna-layout">
     <div class="rayna-photos reveal">
-      <img class="span" src="photos/Rayna copy/Baby Shoot/SLP_1741.jpg" alt="Sakshee and newborn Rayna" loading="lazy">
-      <img src="photos/Rayna copy/Baby Shoot/SLP_1759.jpg" alt="Rayna" loading="lazy">
-      <img src="photos/Rayna copy/Baby Shoot/SLP_1781.jpg" alt="Rayna" loading="lazy">
+      <img loading="lazy" class="span" src="photos/Rayna copy/Baby Shoot/SLP_1741.jpg" alt="Sakshee and newborn Rayna" >
+      <img loading="lazy" src="photos/Rayna copy/Baby Shoot/SLP_1759.jpg" alt="Rayna" >
+      <img loading="lazy" src="photos/Rayna copy/Baby Shoot/SLP_1781.jpg" alt="Rayna" >
     </div>
     <div class="reveal reveal-delay-1">
       <span class="rayna-word">आमा - Aama.</span>
@@ -516,16 +584,16 @@
   </div>
 
   <div class="wedding-strip reveal" style="margin-top:4rem">
-    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-2-Edit-Edit.jpg" alt="Rayna Cake Smash" loading="lazy">
-    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-20-Edit.jpg" alt="Rayna 1st Birthday" loading="lazy">
-    <img src="photos/Rayna copy/Christmas 2025/Paquin-7-Edit.jpg" alt="Christmas 2025" loading="lazy">
-    <img src="photos/Rayna copy/Christmas 2025/Paquin-16-Edit.jpg" alt="Family Christmas" loading="lazy">
+    <img loading="lazy" src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-2-Edit-Edit.jpg" alt="Rayna Cake Smash" >
+    <img loading="lazy" src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-20-Edit.jpg" alt="Rayna 1st Birthday" >
+    <img loading="lazy" src="photos/Rayna copy/Christmas 2025/Paquin-7-Edit.jpg" alt="Christmas 2025" >
+    <img loading="lazy" src="photos/Rayna copy/Christmas 2025/Paquin-16-Edit.jpg" alt="Family Christmas" >
   </div>
   <div class="wedding-strip reveal" style="margin-top:0.75rem">
-    <img src="photos/Rayna copy/Baby Shoot/SLP_1820.jpg" alt="Rayna" loading="lazy">
-    <img src="photos/Rayna copy/Baby Shoot/SLP_1853.jpg" alt="Rayna" loading="lazy">
-    <img src="photos/Rayna copy/Baby Shoot/SLP_1909.jpg" alt="Rayna" loading="lazy">
-    <img src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-50-Edit.jpg" alt="Rayna" loading="lazy">
+    <img loading="lazy" src="photos/Rayna copy/Baby Shoot/SLP_1820.jpg" alt="Rayna" >
+    <img loading="lazy" src="photos/Rayna copy/Baby Shoot/SLP_1853.jpg" alt="Rayna" >
+    <img loading="lazy" src="photos/Rayna copy/Baby Shoot/SLP_1909.jpg" alt="Rayna" >
+    <img loading="lazy" src="photos/Rayna copy/Cake Smash 1st Bday/Rayna-50-Edit.jpg" alt="Rayna" >
   </div>
 </section>
 
@@ -535,11 +603,11 @@
     <p class="letter-date">Mother's Day - May 2026</p>
     <div class="letter-body">
       <p class="letter-opening">To Sakshee -<br>the woman who made me understand<br>what it means to really see someone.</p>
-      <p>I met you on a stage in New York. You were playing someone else, and somehow that’s how I learned who you were — there was no hiding it, even inside another person’s lines. I didn’t know you yet. I knew I would.</p>
-      <p>We’ve traveled the world together — Egypt at dawn, India to walk the land you came from, the UAE to explore somewhere new on my birthday, Paris in summer. In every one of those places, you were the thing I couldn’t look away from. Not because of how you look. Because of who you are in every room you walk into.</p>
-      <p>I got down on one knee in Paris. You looked at me the way you look at everything you love — all the way in, no part held back. I’ve been chasing that look ever since.</p>
-      <p>Then came Rayna. And I watched something open in you that only you knew was there. You held her the first day and looked at her like you’d known her forever. Because you had.</p>
-      <p>You are a great artist. A great role model. A great friend, daughter, partner. But the thing you do best — the thing I’ll tell Rayna about when she’s old enough to understand — is love. You love the way you do everything: all the way in, no part held back. Our daughter will spend her whole life knowing exactly what that feels like.<br>You are a great mother.</p>
+      <p>I met you on a stage in New York. You were playing someone else, and somehow that's how I learned who you were - there was no hiding it, even inside another person's lines. I didn't know you yet. I knew I would.</p>
+      <p>We've traveled the world together - Egypt at dawn, India to walk the land you came from, the UAE to explore somewhere new on my birthday, Paris in summer. In every one of those places, you were the thing I couldn't look away from. Not because of how you look. Because of who you are in every room you walk into.</p>
+      <p>I got down on one knee in Paris. You looked at me the way you look at everything you love - all the way in, no part held back. I've been chasing that look ever since.</p>
+      <p>Then came Rayna. And I watched something open in you that only you knew was there. You held her the first day and looked at her like you'd known her forever. Because you had.</p>
+      <p>You are a great artist. A great role model. A great friend, daughter, partner. But the thing you do best - the thing I'll tell Rayna about when she's old enough to understand - is love. You love the way you do everything: all the way in, no part held back. Our daughter will spend her whole life knowing exactly what that feels like.<br>You are a great mother.</p>
       <p>Thank you for New York. For every country we've stood in together. For Paris. For Rayna. For being exactly, completely, unapologetically you.</p>
       <p style="font-style:italic; color:var(--rose); font-size:1.2rem;">तिमीलाई माया गर्छु - I love you. Always.</p>
     </div>
@@ -550,7 +618,7 @@
 <!-- FOOTER -->
 <footer>
   <span class="footer-name" id="footer-trigger">Sakshee Sharmaa Paquin</span>
-  <p class="footer-sub">With love — Mother's Day 2026</p>
+  <p class="footer-sub">With love - Mother's Day 2026</p>
 </footer>
 
 <!-- UNLOCK OVERLAY -->
@@ -576,9 +644,13 @@
   </nav>
 
   <div class="pf-hero">
-    <p class="pf-hero-eyebrow">Sakshee Sharmaa — Portfolio</p>
+    <div class="pf-hero-bg"></div>
+    <div class="pf-hero-overlay"></div>
+    <div class="pf-hero-content">
+    <p class="pf-hero-eyebrow">Sakshee Sharmaa - Portfolio</p>
     <h1 class="pf-hero-name">Actor.<br><em>Model. Creator.</em></h1>
     <p class="pf-hero-sub">Based in New York & Florida · Available for projects</p>
+    </div>
   </div>
 
   <div class="pf-tabs">
@@ -595,7 +667,7 @@
       <h2 class="pf-section-title">Your <em>space.</em></h2>
       <div style="width:50px;height:1px;background:var(--gold);margin:0 0 2.5rem"></div>
 
-      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem">This is yours. No one else can find it. It lives inside a site I built for you — tucked behind a password, waiting for you to make it what you want.</p>
+      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem">This is yours. No one else can find it. It lives inside a site I built for you - tucked behind a password, waiting for you to make it what you want.</p>
       <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:3rem">You've always wanted a place to put your work. Here it is. Add to it at whatever pace feels right. When you're ready to share it with the world, we flip one switch and it becomes the main page.</p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3.5rem">
@@ -615,49 +687,102 @@
           <p style="font-size:0.95rem;font-weight:300;color:var(--ink-3);line-height:1.6">Your voice. Stories, thoughts, whatever you want to put into words.</p>
         </div>
       </div>
-
-      <p style="font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem">How to add content</p>
-      <div style="background:#f7f3ec;padding:1.5rem 2rem;border-left:2px solid var(--gold);margin-bottom:1rem">
-        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2);margin-bottom:0.75rem"><strong style="font-weight:500">Photos (acting &amp; modeling):</strong> Drop images into <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">photos/portfolio/</code> and add entries to <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">pfAlbums.acting</code> or <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">pfAlbums.modeling</code> in the code.</p>
-        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2);margin-bottom:0.75rem"><strong style="font-weight:500">Blog posts:</strong> Add an object to the <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">blogPosts</code> array with <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">title</code>, <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">date</code>, <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">excerpt</code>, and <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">body</code>.</p>
-        <p style="font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--ink-2)"><strong style="font-weight:500">To go public:</strong> Change <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">PORTFOLIO_MODE_PUBLIC = false</code> to <code style="font-family:monospace;font-size:0.85rem;background:rgba(0,0,0,0.06);padding:0.1em 0.4em">true</code> in the JS.</p>
-      </div>
     </div>
   </div>
 
   <!-- ACTING -->
   <div class="pf-panel" id="pf-acting">
-    <p class="pf-section-label">Stage &amp; Screen</p>
-    <h2 class="pf-section-title">Acting <em>Work</em></h2>
-    <div class="pf-grid" id="pf-acting-grid"></div>
-    <div class="pf-empty" id="pf-acting-empty">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
+      <div>
+        <p class="pf-section-label">Stage &amp; Screen</p>
+        <h2 class="pf-section-title">Acting <em>Work</em></h2>
+      </div>
+      <label class="cms-upload-btn">+ Add Files
+        <input type="file" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="cmsUpload('acting', this)" style="display:none">
+      </label>
+    </div>
+    <div class="cms-grid" id="cms-acting-grid"></div>
+    <div class="pf-empty" id="pf-acting-empty" style="display:none">
       <div class="pf-empty-icon">🎭</div>
-      <p class="pf-empty-text">Acting portfolio coming soon.</p>
-      <p class="pf-empty-sub">Add headshots and credits to pfAlbums.acting</p>
+      <p class="pf-empty-text">No acting files yet.</p>
+      <p class="pf-empty-sub">Click "Add Files" to upload headshots, reels, or PDFs.</p>
     </div>
   </div>
 
   <!-- MODELING -->
   <div class="pf-panel" id="pf-modeling">
-    <p class="pf-section-label">Editorial &amp; Campaign</p>
-    <h2 class="pf-section-title">Modeling <em>Work</em></h2>
-    <div class="pf-grid" id="pf-modeling-grid"></div>
-    <div class="pf-empty" id="pf-modeling-empty">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
+      <div>
+        <p class="pf-section-label">Editorial &amp; Campaign</p>
+        <h2 class="pf-section-title">Modeling <em>Work</em></h2>
+      </div>
+      <label class="cms-upload-btn">+ Add Files
+        <input type="file" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="cmsUpload('modeling', this)" style="display:none">
+      </label>
+    </div>
+    <div class="cms-grid" id="cms-modeling-grid"></div>
+    <div class="pf-empty" id="pf-modeling-empty" style="display:none">
       <div class="pf-empty-icon">📸</div>
-      <p class="pf-empty-text">Modeling portfolio coming soon.</p>
-      <p class="pf-empty-sub">Add campaign and editorial photos to pfAlbums.modeling</p>
+      <p class="pf-empty-text">No modeling files yet.</p>
+      <p class="pf-empty-sub">Click "Add Files" to upload photos, videos, or PDFs.</p>
     </div>
   </div>
 
   <!-- BLOG -->
   <div class="pf-panel" id="pf-blog">
-    <p class="pf-section-label">Writing</p>
-    <h2 class="pf-section-title">The <em>Blog</em></h2>
-    <div class="blog-list" id="pf-blog-list"></div>
-    <div class="pf-empty blog-empty" id="pf-blog-empty">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
+      <div>
+        <p class="pf-section-label">Writing</p>
+        <h2 class="pf-section-title">The <em>Blog</em></h2>
+      </div>
+      <button class="cms-upload-btn" onclick="blogOpenForm(null)">+ New Post</button>
+    </div>
+
+    <!-- Blog post list -->
+    <div id="blog-post-list"></div>
+    <div class="pf-empty" id="pf-blog-empty" style="display:none">
       <div class="pf-empty-icon">✍️</div>
       <p class="pf-empty-text">No posts yet.</p>
-      <p class="pf-empty-sub">Add entries to the blogPosts array below</p>
+      <p class="pf-empty-sub">Click "New Post" to write your first entry.</p>
+    </div>
+
+    <!-- Blog form (hidden by default) -->
+    <div id="blog-form-wrap" style="display:none;max-width:780px;margin-top:1rem">
+      <input type="hidden" id="blog-edit-id">
+      <div class="cms-field">
+        <label class="cms-label">Title *</label>
+        <input class="cms-input" id="blog-title" placeholder="Post title" type="text">
+      </div>
+      <div class="cms-field">
+        <label class="cms-label">Subtitle</label>
+        <input class="cms-input" id="blog-subtitle" placeholder="Optional subtitle or tagline" type="text">
+      </div>
+      <div class="cms-field">
+        <label class="cms-label">Body *</label>
+        <textarea class="cms-input cms-textarea" id="blog-body" placeholder="Write your post here..."></textarea>
+      </div>
+      <div class="cms-field">
+        <label class="cms-label">Tags</label>
+        <input class="cms-input" id="blog-tags" placeholder="e.g. travel, acting, life" type="text">
+      </div>
+      <div class="cms-field">
+        <label class="cms-label">Cover Image</label>
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <label class="cms-upload-btn" style="font-size:0.65rem">Upload Cover
+            <input type="file" accept="image/*" id="blog-cover-file" style="display:none" onchange="blogUploadCover(this)">
+          </label>
+          <span id="blog-cover-preview" style="font-size:0.8rem;color:var(--ink-3)"></span>
+        </div>
+        <input type="hidden" id="blog-cover-url">
+      </div>
+      <div class="cms-field" style="display:flex;align-items:center;gap:0.75rem">
+        <input type="checkbox" id="blog-published" style="width:16px;height:16px;accent-color:var(--gold)">
+        <label class="cms-label" style="margin:0;cursor:pointer" for="blog-published">Published (visible to visitors)</label>
+      </div>
+      <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap">
+        <button class="cms-upload-btn" onclick="blogSave()">Save Post</button>
+        <button class="cms-upload-btn" style="background:transparent;border-color:rgba(201,169,110,0.3);color:var(--ink-3)" onclick="blogCloseForm()">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -685,7 +810,7 @@
 <div id="lb-viewer">
   <button class="lb-viewer-close" onclick="closeViewer()">✕</button>
   <button class="lb-viewer-prev" onclick="viewerNav(-1)">‹</button>
-  <img id="lb-viewer-img" src="" alt="">
+  <img loading="lazy" id="lb-viewer-img" src="" alt="">
   <button class="lb-viewer-next" onclick="viewerNav(1)">›</button>
 </div>
 
@@ -955,7 +1080,7 @@
     album.photos.forEach((src, i) => {
       const item = document.createElement('div');
       item.className = 'lb-grid-item';
-      item.innerHTML = `<img src="${src}" loading="lazy" alt="">`;
+      item.innerHTML = `<img loading="lazy" src="${src}"  alt="">`;
       item.onclick = () => openViewer(i);
       grid.appendChild(item);
     });
@@ -996,7 +1121,7 @@
   });
 
   // ─────────────────────────────────────────
-  // PORTFOLIO — HIDDEN WORLD
+  // PORTFOLIO - HIDDEN WORLD
   // To flip modes (tribute hidden, portfolio public):
   //   change PORTFOLIO_MODE_PUBLIC = true
   // ─────────────────────────────────────────
@@ -1022,7 +1147,7 @@
     // }
   ];
 
-  // ── Unlock trigger — click footer name 5x ──
+  // ── Unlock trigger - click footer name 5x ──
   let footerTaps = 0;
   let tapTimer = null;
   document.getElementById('footer-trigger').addEventListener('click', () => {
@@ -1088,6 +1213,141 @@
     setTimeout(() => { el.style.display = 'none'; document.body.style.overflow = ''; }, 500);
   }
 
+  // ── CMS ──
+  const CMS_API = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:8097' : window.location.origin;
+  let blogPendingCoverPostId = null;
+
+  async function cmsUpload(section, input) {
+    const files = Array.from(input.files);
+    if (!files.length) return;
+    const prog = document.createElement('p');
+    prog.className = 'cms-upload-progress';
+    prog.textContent = `Uploading 0 / ${files.length}...`;
+    document.getElementById('cms-' + section + '-grid').before(prog);
+    for (let i = 0; i < files.length; i++) {
+      prog.textContent = `Uploading ${i + 1} / ${files.length}...`;
+      const fd = new FormData();
+      fd.append('file', files[i]);
+      await fetch(`${CMS_API}/upload/${section}`, { method: 'POST', body: fd });
+    }
+    prog.remove();
+    input.value = '';
+    cmsLoadGrid(section);
+  }
+
+  async function cmsLoadGrid(section) {
+    const res = await fetch(`${CMS_API}/files/${section}`);
+    const files = await res.json();
+    const grid = document.getElementById('cms-' + section + '-grid');
+    const empty = document.getElementById('pf-' + section + '-empty');
+    grid.innerHTML = '';
+    if (!files.length) { empty.style.display = 'flex'; return; }
+    empty.style.display = 'none';
+    files.forEach(f => {
+      const card = document.createElement('div');
+      card.className = 'cms-card';
+      let preview = '';
+      if (f.file_type === 'image') {
+        preview = `<img src="${f.url}" alt="${f.original_name}">`;
+      } else if (f.file_type === 'video') {
+        preview = `<video class="cms-card-video" src="${f.url}" muted></video>`;
+      } else {
+        preview = `<div class="cms-card-doc"><span>📄</span><p style="font-family:monospace;font-size:0.7rem">${f.original_name.split('.').pop().toUpperCase()}</p></div>`;
+      }
+      card.innerHTML = `${preview}<div class="cms-card-info"><p class="cms-card-name">${f.original_name}</p><button class="cms-card-del" onclick="cmsDelete('${section}','${f.id}')">✕ Remove</button></div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  async function cmsDelete(section, id) {
+    if (!confirm('Remove this file?')) return;
+    await fetch(`${CMS_API}/files/${section}/${id}`, { method: 'DELETE' });
+    cmsLoadGrid(section);
+  }
+
+  // Blog
+  let allBlogPosts = [];
+  async function blogLoad() {
+    const res = await fetch(`${CMS_API}/blog`);
+    allBlogPosts = await res.json();
+    const list = document.getElementById('blog-post-list');
+    const empty = document.getElementById('pf-blog-empty');
+    list.innerHTML = '';
+    if (!allBlogPosts.length) { empty.style.display = 'flex'; return; }
+    empty.style.display = 'none';
+    allBlogPosts.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'blog-post-item';
+      const date = new Date(p.created_at).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+      item.innerHTML = `<div><p class="blog-post-title">${p.title}</p><p class="blog-post-meta">${date} · ${p.published ? '✓ Published' : 'Draft'}</p></div><div class="blog-post-actions"><button class="blog-action-btn blog-action-edit" onclick="blogOpenForm('${p.id}')">Edit</button><button class="blog-action-btn blog-action-del" onclick="blogDelete('${p.id}')">Delete</button></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  function blogOpenForm(id) {
+    const wrap = document.getElementById('blog-form-wrap');
+    wrap.style.display = 'block';
+    document.getElementById('blog-edit-id').value = id || '';
+    if (id) {
+      const p = allBlogPosts.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('blog-title').value = p.title || '';
+      document.getElementById('blog-subtitle').value = p.subtitle || '';
+      document.getElementById('blog-body').value = p.body || '';
+      document.getElementById('blog-tags').value = p.tags || '';
+      document.getElementById('blog-cover-url').value = p.cover_image || '';
+      document.getElementById('blog-cover-preview').textContent = p.cover_image ? 'Cover set ✓' : '';
+      document.getElementById('blog-published').checked = !!p.published;
+    } else {
+      ['blog-title','blog-subtitle','blog-body','blog-tags','blog-cover-url'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('blog-cover-preview').textContent = '';
+      document.getElementById('blog-published').checked = false;
+    }
+    wrap.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function blogCloseForm() {
+    document.getElementById('blog-form-wrap').style.display = 'none';
+    blogPendingCoverPostId = null;
+  }
+
+  async function blogSave() {
+    const id = document.getElementById('blog-edit-id').value;
+    const payload = {
+      title: document.getElementById('blog-title').value.trim(),
+      subtitle: document.getElementById('blog-subtitle').value.trim(),
+      body: document.getElementById('blog-body').value.trim(),
+      tags: document.getElementById('blog-tags').value.trim(),
+      cover_image: document.getElementById('blog-cover-url').value,
+      published: document.getElementById('blog-published').checked
+    };
+    if (!payload.title) { alert('Title is required.'); return; }
+    const method = id ? 'PUT' : 'POST';
+    const url = id ? `${CMS_API}/blog/${id}` : `${CMS_API}/blog`;
+    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const saved = await res.json();
+    // upload cover if file selected
+    const coverFile = document.getElementById('blog-cover-file').files[0];
+    if (coverFile) {
+      const fd = new FormData();
+      fd.append('file', coverFile);
+      await fetch(`${CMS_API}/blog/${saved.id}/cover`, { method: 'POST', body: fd });
+    }
+    blogCloseForm();
+    blogLoad();
+  }
+
+  async function blogDelete(id) {
+    if (!confirm('Delete this post?')) return;
+    await fetch(`${CMS_API}/blog/${id}`, { method: 'DELETE' });
+    blogLoad();
+  }
+
+  async function blogUploadCover(input) {
+    if (!input.files[0]) return;
+    document.getElementById('blog-cover-preview').textContent = 'Ready to upload on save ✓';
+  }
+
   // ── Tab switching ──
   function pfShowTab(tab) {
     document.querySelectorAll('.pf-panel').forEach(p => p.classList.remove('active'));
@@ -1096,13 +1356,16 @@
     document.querySelectorAll('.pf-tab').forEach(t => {
       if (t.textContent.toLowerCase().trim() === tab) t.classList.add('active');
     });
+    if (tab === 'acting') cmsLoadGrid('acting');
+    if (tab === 'modeling') cmsLoadGrid('modeling');
+    if (tab === 'blog') blogLoad();
   }
 
   // ── Render portfolio content ──
   function pfRenderAll() {
-    pfRenderGrid('acting');
-    pfRenderGrid('modeling');
-    pfRenderBlog();
+    cmsLoadGrid('acting');
+    cmsLoadGrid('modeling');
+    blogLoad();
   }
 
   function pfRenderGrid(type) {
@@ -1117,7 +1380,7 @@
     photos.forEach((p, i) => {
       const item = document.createElement('div');
       item.className = 'pf-grid-item';
-      item.innerHTML = `<img src="${p.src}" loading="lazy" alt="${p.caption || ''}">`;
+      item.innerHTML = `<img loading="lazy" src="${p.src}"  alt="${p.caption || ''}">`;
       grid.appendChild(item);
     });
   }
