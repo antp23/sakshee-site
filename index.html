@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sakshee - A Mother's Day Tribute</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -220,8 +221,12 @@
     .pf-nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .pf-nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; cursor: pointer; transition: color 0.3s; }
     .pf-nav-links a:hover { color: var(--gold-light); }
+    .pf-nav-actions { display: flex; gap: 0.75rem; align-items: center; }
     .pf-close-btn { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); background: none; border: 1px solid rgba(255,255,255,0.15); padding: 0.4rem 1rem; cursor: pointer; transition: all 0.3s; }
     .pf-close-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+    .pf-edit-btn { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(201,169,110,0.3); padding: 0.4rem 1rem; cursor: pointer; transition: all 0.3s; }
+    .pf-edit-btn:hover, #portfolio-world.editing .pf-edit-btn { border-color: var(--gold); color: var(--gold-light); }
+    @media (max-width: 760px) { .pf-nav { align-items: flex-start; gap: 1rem; flex-wrap: wrap; } .pf-nav-links { order: 3; width: 100%; gap: 1.2rem; } }
 
     /* Portfolio hero */
     .pf-hero { padding: 0; background: var(--dark); position: relative; height: 85vh; min-height: 600px; display: flex; align-items: flex-end; overflow: hidden; }
@@ -247,6 +252,12 @@
     .pf-section-label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
     .pf-section-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--ink); margin-bottom: 3rem; line-height: 1.1; }
     .pf-section-title em { font-style: italic; color: var(--ink-3); }
+    .pf-profile { display:grid; grid-template-columns:1.2fr 0.8fr; gap:2rem; border-top:1px solid rgba(201,169,110,0.25); border-bottom:1px solid rgba(201,169,110,0.25); padding:2rem 0; margin:0 0 3rem; }
+    .pf-profile-text { font-size:1.05rem; font-weight:300; line-height:1.85; color:var(--ink-2); }
+    .pf-profile-list { display:grid; gap:1rem; align-content:start; }
+    .pf-profile-kicker { font-family:'Montserrat',sans-serif; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.25rem; }
+    .pf-profile-value { font-size:1.05rem; color:var(--ink); font-style:italic; }
+    @media (max-width: 760px) { .pf-profile { grid-template-columns:1fr; } }
     .pf-grid { columns: 3; column-gap: 1rem; margin-bottom: 5rem; }
     @media (max-width: 900px) { .pf-grid { columns: 2; } }
     @media (max-width: 480px) { .pf-grid { columns: 2; column-gap: 0.5rem; } }
@@ -301,6 +312,11 @@
     .blog-action-edit { color:var(--gold); }
     .blog-action-del { color:var(--rose); }
     .blog-action-btn:hover { text-decoration:underline; }
+    .edit-only { display:none !important; }
+    #portfolio-world.editing .edit-inline { display:inline-flex !important; }
+    #portfolio-world.editing .edit-flex { display:flex !important; }
+    #portfolio-world.editing .edit-block { display:block !important; }
+    #portfolio-world:not(.editing) #blog-form-wrap { display:none !important; }
     .pf-footer-name { font-size: clamp(1.5rem, 4vw, 3rem); font-style: italic; font-weight: 300; color: var(--gold-light); display: block; margin-bottom: 1rem; }
     .pf-footer-sub { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
@@ -640,7 +656,10 @@
       <li><a onclick="pfShowTab('modeling')">Modeling</a></li>
       <li><a onclick="pfShowTab('blog')">Blog</a></li>
     </ul>
-    <button class="pf-close-btn" onclick="closePortfolio()">← Back</button>
+    <div class="pf-nav-actions">
+      <button class="pf-edit-btn" id="pf-edit-toggle" onclick="togglePortfolioEdit()">Edit Off</button>
+      <button class="pf-close-btn" onclick="closePortfolio()">← Back</button>
+    </div>
   </nav>
 
   <div class="pf-hero">
@@ -667,8 +686,29 @@
       <h2 class="pf-section-title">Your <em>space.</em></h2>
       <div style="width:50px;height:1px;background:var(--gold);margin:0 0 2.5rem"></div>
 
-      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem">This is yours. No one else can find it. It lives inside a site I built for you - tucked behind a password, waiting for you to make it what you want.</p>
+      <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:1.5rem">This is yours. A quiet little room inside a site I built for you - tucked behind a password, waiting for you to make it what you want.</p>
       <p style="font-size:1.1rem;font-weight:300;line-height:1.95;color:var(--ink-2);margin-bottom:3rem">You've always wanted a place to put your work. Here it is. Add to it at whatever pace feels right. When you're ready to share it with the world, we flip one switch and it becomes the main page.</p>
+
+      <div class="pf-profile">
+        <div>
+          <p class="pf-profile-kicker">Studio Profile</p>
+          <p class="pf-profile-text">Actor, model, and creator with roots in Nepal, Mumbai, New York, and Florida. This profile can become her public-facing portfolio whenever she is ready.</p>
+        </div>
+        <div class="pf-profile-list">
+          <div>
+            <p class="pf-profile-kicker">Based In</p>
+            <p class="pf-profile-value">New York &amp; Florida</p>
+          </div>
+          <div>
+            <p class="pf-profile-kicker">Focus</p>
+            <p class="pf-profile-value">Acting · Modeling · Writing</p>
+          </div>
+          <div>
+            <p class="pf-profile-kicker">Contact</p>
+            <p class="pf-profile-value">Add when ready</p>
+          </div>
+        </div>
+      </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3.5rem">
         <div onclick="pfShowTab('acting')" style="border:1px solid rgba(201,169,110,0.25);padding:2rem 1.5rem;cursor:pointer;transition:border-color 0.3s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,169,110,0.25)'">
@@ -697,15 +737,15 @@
         <p class="pf-section-label">Stage &amp; Screen</p>
         <h2 class="pf-section-title">Acting <em>Work</em></h2>
       </div>
-      <label class="cms-upload-btn">+ Add Files
+      <label class="cms-upload-btn edit-only edit-inline">+ Add Files
         <input type="file" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="cmsUpload('acting', this)" style="display:none">
       </label>
     </div>
     <div class="cms-grid" id="cms-acting-grid"></div>
-    <div class="pf-empty" id="pf-acting-empty" style="display:none">
-      <div class="pf-empty-icon">🎭</div>
+      <div class="pf-empty" id="pf-acting-empty" style="display:none">
+      <div class="pf-empty-icon">Stage</div>
       <p class="pf-empty-text">No acting files yet.</p>
-      <p class="pf-empty-sub">Click "Add Files" to upload headshots, reels, or PDFs.</p>
+      <p class="pf-empty-sub">Turn on Edit to add headshots, reels, or PDFs.</p>
     </div>
   </div>
 
@@ -716,15 +756,15 @@
         <p class="pf-section-label">Editorial &amp; Campaign</p>
         <h2 class="pf-section-title">Modeling <em>Work</em></h2>
       </div>
-      <label class="cms-upload-btn">+ Add Files
+      <label class="cms-upload-btn edit-only edit-inline">+ Add Files
         <input type="file" multiple accept="image/*,video/*,.pdf,.doc,.docx" onchange="cmsUpload('modeling', this)" style="display:none">
       </label>
     </div>
     <div class="cms-grid" id="cms-modeling-grid"></div>
-    <div class="pf-empty" id="pf-modeling-empty" style="display:none">
-      <div class="pf-empty-icon">📸</div>
+      <div class="pf-empty" id="pf-modeling-empty" style="display:none">
+      <div class="pf-empty-icon">Lens</div>
       <p class="pf-empty-text">No modeling files yet.</p>
-      <p class="pf-empty-sub">Click "Add Files" to upload photos, videos, or PDFs.</p>
+      <p class="pf-empty-sub">Turn on Edit to add photos, videos, or PDFs.</p>
     </div>
   </div>
 
@@ -735,15 +775,15 @@
         <p class="pf-section-label">Writing</p>
         <h2 class="pf-section-title">The <em>Blog</em></h2>
       </div>
-      <button class="cms-upload-btn" onclick="blogOpenForm(null)">+ New Post</button>
+      <button class="cms-upload-btn edit-only edit-inline" onclick="blogOpenForm(null)">+ New Post</button>
     </div>
 
     <!-- Blog post list -->
     <div id="blog-post-list"></div>
-    <div class="pf-empty" id="pf-blog-empty" style="display:none">
-      <div class="pf-empty-icon">✍️</div>
+      <div class="pf-empty" id="pf-blog-empty" style="display:none">
+      <div class="pf-empty-icon">Words</div>
       <p class="pf-empty-text">No posts yet.</p>
-      <p class="pf-empty-sub">Click "New Post" to write your first entry.</p>
+      <p class="pf-empty-sub">Turn on Edit to write the first entry.</p>
     </div>
 
     <!-- Blog form (hidden by default) -->
@@ -895,7 +935,7 @@
         'photos/paris Engaged copy/NYC02558.JPG',
         'photos/paris Engaged copy/NYC02565.JPG',
         'photos/paris Engaged copy/NYC02567.JPG',
-        'photos/paris Engaged copy/NYC02580.JPG',
+        'photos/paris Engaged copy/NYC02580*.JPG',
       ]
     },
     india: {
@@ -1126,7 +1166,8 @@
   //   change PORTFOLIO_MODE_PUBLIC = true
   // ─────────────────────────────────────────
   const PORTFOLIO_MODE_PUBLIC = false; // flip to true when ready to go live
-  const PORTFOLIO_PASSWORD = 'sakshee'; // change this to whatever she wants
+  // Client-side privacy curtain only. Use real server auth before treating this as protected.
+  const PORTFOLIO_PASSWORD_HASH = '7350450517f1ff95040fadcf5073a71dcda60118fe4780e9d70ba95c80349d7e';
 
   // ── Portfolio content ── add photos + posts here ──
   const pfAlbums = {
@@ -1183,22 +1224,39 @@
     setTimeout(() => { el.style.display = 'none'; document.getElementById('unlock-input').value = ''; }, 400);
   }
 
-  document.getElementById('unlock-input').addEventListener('keydown', (e) => {
+  async function unlockHash(value) {
+    const bytes = new TextEncoder().encode(value);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function rejectUnlock() {
+    const input = document.getElementById('unlock-input');
+    input.classList.add('unlock-shake');
+    input.value = '';
+    setTimeout(() => input.classList.remove('unlock-shake'), 400);
+  }
+
+  document.getElementById('unlock-input').addEventListener('keydown', async (e) => {
     if (e.key === 'Enter') {
       const val = document.getElementById('unlock-input').value.trim().toLowerCase();
-      if (val === PORTFOLIO_PASSWORD) {
+      let unlocked = false;
+      try {
+        unlocked = await unlockHash(val) === PORTFOLIO_PASSWORD_HASH;
+      } catch {
+        unlocked = false;
+      }
+      if (unlocked) {
         closeUnlock();
         setTimeout(openPortfolio, 300);
       } else {
-        const input = document.getElementById('unlock-input');
-        input.classList.add('unlock-shake');
-        input.value = '';
-        setTimeout(() => input.classList.remove('unlock-shake'), 400);
+        rejectUnlock();
       }
     }
   });
 
   function openPortfolio() {
+    setPortfolioEdit(false);
     pfRenderAll();
     const el = document.getElementById('portfolio-world');
     el.style.display = 'block';
@@ -1213,9 +1271,30 @@
     setTimeout(() => { el.style.display = 'none'; document.body.style.overflow = ''; }, 500);
   }
 
+  function setPortfolioEdit(on) {
+    const el = document.getElementById('portfolio-world');
+    const btn = document.getElementById('pf-edit-toggle');
+    el.classList.toggle('editing', !!on);
+    if (btn) btn.textContent = on ? 'Edit On' : 'Edit Off';
+    if (!on) blogCloseForm();
+  }
+
+  function togglePortfolioEdit() {
+    const el = document.getElementById('portfolio-world');
+    setPortfolioEdit(!el.classList.contains('editing'));
+  }
+
   // ── CMS ──
   const CMS_API = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:8097' : window.location.origin;
   let blogPendingCoverPostId = null;
+
+  function showPortfolioEmpty(id, message) {
+    const empty = document.getElementById(id);
+    if (!empty) return;
+    if (!empty.dataset.defaultText) empty.dataset.defaultText = empty.innerHTML;
+    empty.innerHTML = message || empty.dataset.defaultText;
+    empty.style.display = 'flex';
+  }
 
   async function cmsUpload(section, input) {
     const files = Array.from(input.files);
@@ -1224,11 +1303,16 @@
     prog.className = 'cms-upload-progress';
     prog.textContent = `Uploading 0 / ${files.length}...`;
     document.getElementById('cms-' + section + '-grid').before(prog);
-    for (let i = 0; i < files.length; i++) {
-      prog.textContent = `Uploading ${i + 1} / ${files.length}...`;
-      const fd = new FormData();
-      fd.append('file', files[i]);
-      await fetch(`${CMS_API}/upload/${section}`, { method: 'POST', body: fd });
+    try {
+      for (let i = 0; i < files.length; i++) {
+        prog.textContent = `Uploading ${i + 1} / ${files.length}...`;
+        const fd = new FormData();
+        fd.append('file', files[i]);
+        const res = await fetch(`${CMS_API}/upload/${section}`, { method: 'POST', body: fd });
+        if (!res.ok) throw new Error('Upload failed');
+      }
+    } catch {
+      alert('Could not reach the CMS server. Start the CMS, then try again.');
     }
     prog.remove();
     input.value = '';
@@ -1236,12 +1320,19 @@
   }
 
   async function cmsLoadGrid(section) {
-    const res = await fetch(`${CMS_API}/files/${section}`);
-    const files = await res.json();
     const grid = document.getElementById('cms-' + section + '-grid');
     const empty = document.getElementById('pf-' + section + '-empty');
     grid.innerHTML = '';
-    if (!files.length) { empty.style.display = 'flex'; return; }
+    let files = [];
+    try {
+      const res = await fetch(`${CMS_API}/files/${section}`);
+      if (!res.ok) throw new Error('CMS unavailable');
+      files = await res.json();
+    } catch {
+      showPortfolioEmpty('pf-' + section + '-empty', '<div class="pf-empty-icon">!</div><p class="pf-empty-text">CMS server is offline.</p><p class="pf-empty-sub">Start the FastAPI CMS to manage files.</p>');
+      return;
+    }
+    if (!files.length) { showPortfolioEmpty('pf-' + section + '-empty'); return; }
     empty.style.display = 'none';
     files.forEach(f => {
       const card = document.createElement('div');
@@ -1254,32 +1345,44 @@
       } else {
         preview = `<div class="cms-card-doc"><span>📄</span><p style="font-family:monospace;font-size:0.7rem">${f.original_name.split('.').pop().toUpperCase()}</p></div>`;
       }
-      card.innerHTML = `${preview}<div class="cms-card-info"><p class="cms-card-name">${f.original_name}</p><button class="cms-card-del" onclick="cmsDelete('${section}','${f.id}')">✕ Remove</button></div>`;
+      card.innerHTML = `${preview}<div class="cms-card-info"><p class="cms-card-name">${f.original_name}</p><button class="cms-card-del edit-only edit-inline" onclick="cmsDelete('${section}','${f.id}')">✕ Remove</button></div>`;
       grid.appendChild(card);
     });
   }
 
   async function cmsDelete(section, id) {
     if (!confirm('Remove this file?')) return;
-    await fetch(`${CMS_API}/files/${section}/${id}`, { method: 'DELETE' });
+    try {
+      const res = await fetch(`${CMS_API}/files/${section}/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+    } catch {
+      alert('Could not remove this file. Check that the CMS server is running.');
+    }
     cmsLoadGrid(section);
   }
 
   // Blog
   let allBlogPosts = [];
   async function blogLoad() {
-    const res = await fetch(`${CMS_API}/blog`);
-    allBlogPosts = await res.json();
     const list = document.getElementById('blog-post-list');
     const empty = document.getElementById('pf-blog-empty');
     list.innerHTML = '';
-    if (!allBlogPosts.length) { empty.style.display = 'flex'; return; }
+    try {
+      const res = await fetch(`${CMS_API}/blog`);
+      if (!res.ok) throw new Error('CMS unavailable');
+      allBlogPosts = await res.json();
+    } catch {
+      allBlogPosts = [];
+      showPortfolioEmpty('pf-blog-empty', '<div class="pf-empty-icon">!</div><p class="pf-empty-text">CMS server is offline.</p><p class="pf-empty-sub">Start the FastAPI CMS to manage posts.</p>');
+      return;
+    }
+    if (!allBlogPosts.length) { showPortfolioEmpty('pf-blog-empty'); return; }
     empty.style.display = 'none';
     allBlogPosts.forEach(p => {
       const item = document.createElement('div');
       item.className = 'blog-post-item';
       const date = new Date(p.created_at).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-      item.innerHTML = `<div><p class="blog-post-title">${p.title}</p><p class="blog-post-meta">${date} · ${p.published ? '✓ Published' : 'Draft'}</p></div><div class="blog-post-actions"><button class="blog-action-btn blog-action-edit" onclick="blogOpenForm('${p.id}')">Edit</button><button class="blog-action-btn blog-action-del" onclick="blogDelete('${p.id}')">Delete</button></div>`;
+      item.innerHTML = `<div><p class="blog-post-title">${p.title}</p><p class="blog-post-meta">${date} · ${p.published ? '✓ Published' : 'Draft'}</p></div><div class="blog-post-actions edit-only edit-flex"><button class="blog-action-btn blog-action-edit" onclick="blogOpenForm('${p.id}')">Edit</button><button class="blog-action-btn blog-action-del" onclick="blogDelete('${p.id}')">Delete</button></div>`;
       list.appendChild(item);
     });
   }
@@ -1324,14 +1427,19 @@
     if (!payload.title) { alert('Title is required.'); return; }
     const method = id ? 'PUT' : 'POST';
     const url = id ? `${CMS_API}/blog/${id}` : `${CMS_API}/blog`;
-    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-    const saved = await res.json();
-    // upload cover if file selected
-    const coverFile = document.getElementById('blog-cover-file').files[0];
-    if (coverFile) {
-      const fd = new FormData();
-      fd.append('file', coverFile);
-      await fetch(`${CMS_API}/blog/${saved.id}/cover`, { method: 'POST', body: fd });
+    try {
+      const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      if (!res.ok) throw new Error('Save failed');
+      const saved = await res.json();
+      const coverFile = document.getElementById('blog-cover-file').files[0];
+      if (coverFile) {
+        const fd = new FormData();
+        fd.append('file', coverFile);
+        await fetch(`${CMS_API}/blog/${saved.id}/cover`, { method: 'POST', body: fd });
+      }
+    } catch {
+      alert('Could not save this post. Check that the CMS server is running.');
+      return;
     }
     blogCloseForm();
     blogLoad();
@@ -1339,7 +1447,12 @@
 
   async function blogDelete(id) {
     if (!confirm('Delete this post?')) return;
-    await fetch(`${CMS_API}/blog/${id}`, { method: 'DELETE' });
+    try {
+      const res = await fetch(`${CMS_API}/blog/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+    } catch {
+      alert('Could not delete this post. Check that the CMS server is running.');
+    }
     blogLoad();
   }
 
@@ -1417,9 +1530,8 @@
 
   // ── Auto-open if portfolio mode is public ──
   if (PORTFOLIO_MODE_PUBLIC) {
-    document.querySelector('body > *:not(#portfolio-world):not(#unlock-overlay)') && null;
     // When public: hide tribute, show portfolio by default
-    document.querySelectorAll('nav, #hero, #beginning, .full-bleed, #world, #wedding, #rayna, #letter, footer:not(.pf-footer)').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('body > nav, #hero, #beginning, .full-bleed, #world, #engagement, #wedding-ceremony, #rayna, #letter, body > footer:not(.pf-footer)').forEach(el => el.style.display = 'none');
     openPortfolio();
   }
 </script>
